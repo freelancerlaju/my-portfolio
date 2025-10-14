@@ -52,7 +52,7 @@ export const renderCustomIcon = (icon: SimpleIcon, theme: string) => {
       href: undefined,
       target: undefined,
       rel: undefined,
-      onClick: (e: any) => e.preventDefault(),
+      onClick: (e: React.MouseEvent) => e.preventDefault(),
     },
   });
 };
@@ -80,7 +80,7 @@ export function IconCloud({ iconSlugs }: DynamicCloudProps) {
   }, [data, theme]);
 
   return (
-    // @ts-ignore
+    // @ts-expect-error - Cloud component props type mismatch with spread operator
     <Cloud {...cloudProps}>
       <>{renderedIcons}</>
     </Cloud>

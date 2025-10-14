@@ -2,11 +2,11 @@
 
 import { Toggle } from "@/components/ui/toggle";
 import { Moon, Sun } from "lucide-react";
-import { useTheme } from "next-themes";
+import { useTheme } from "../../hooks/useTheme";
 import { useEffect, useState } from "react";
 
 export function ThemeToggle() {
-  const { theme, setTheme } = useTheme();
+  const { theme, toggleTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -22,7 +22,7 @@ export function ThemeToggle() {
       variant="default"
       className="group size-9 border-0 ring-0 focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 data-[state=on]:bg-transparent data-[state=on]:hover:bg-muted"
       pressed={theme === "dark"}
-      onPressedChange={() => setTheme(theme === "dark" ? "light" : "dark")}
+      onPressedChange={toggleTheme}
       aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
     >
       <Moon

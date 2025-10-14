@@ -7,12 +7,19 @@ export function useTheme() {
   const [resolvedTheme, setResolvedTheme] = useState<"light" | "dark">("dark");
 
   useEffect(() => {
-    // Get initial theme from localStorage or default to 'dark'
-    const savedTheme = (localStorage.getItem("theme") as Theme) || "dark";
-    setTheme(savedTheme);
+    try {
+      // Get initial theme from localStorage or default to 'dark'
+      const savedTheme = (localStorage.getItem("theme") as Theme) || "dark";
+      setTheme(savedTheme);
 
-    // Apply theme to document
-    applyTheme(savedTheme);
+      // Apply theme to document
+      applyTheme(savedTheme);
+    } catch (error) {
+      console.error("Error initializing theme:", error);
+      // Fallback to dark theme
+      setTheme("dark");
+      applyTheme("dark");
+    }
   }, []);
 
   useEffect(() => {
@@ -31,19 +38,23 @@ export function useTheme() {
   }, [theme]);
 
   const applyTheme = (newTheme: Theme) => {
-    const root = document.documentElement;
+    try {
+      const root = document.documentElement;
 
-    if (newTheme === "system") {
-      const systemTheme = window.matchMedia("(prefers-color-scheme: dark)")
-        .matches
-        ? "dark"
-        : "light";
-      root.classList.toggle("dark", systemTheme === "dark");
-    } else {
-      root.classList.toggle("dark", newTheme === "dark");
+      if (newTheme === "system") {
+        const systemTheme = window.matchMedia("(prefers-color-scheme: dark)")
+          .matches
+          ? "dark"
+          : "light";
+        root.classList.toggle("dark", systemTheme === "dark");
+      } else {
+        root.classList.toggle("dark", newTheme === "dark");
+      }
+
+      localStorage.setItem("theme", newTheme);
+    } catch (error) {
+      console.error("Error applying theme:", error);
     }
-
-    localStorage.setItem("theme", newTheme);
   };
 
   const toggleTheme = () => {

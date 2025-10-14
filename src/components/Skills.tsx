@@ -134,8 +134,18 @@ const skills = [
   },
 
   { name: "Git", icon: SiGit, color: "#f34f29", url: "https://git-scm.com/" },
-  { name: "GitHub", icon: SiGithub, color: "# ", url: "https://github.com/" },
-  { name: "Vercel", icon: SiVercel, color: "#", url: "https://vercel.com/" },
+  {
+    name: "GitHub",
+    icon: SiGithub,
+    color: "#000000",
+    url: "https://github.com/",
+  },
+  {
+    name: "Vercel",
+    icon: SiVercel,
+    color: "#000000",
+    url: "https://vercel.com/",
+  },
 ];
 
 export function Skills() {

@@ -65,10 +65,16 @@ type IconData = Awaited<ReturnType<typeof fetchSimpleIcons>>;
 
 export function IconCloud({ iconSlugs }: DynamicCloudProps) {
   const [data, setData] = useState<IconData | null>(null);
+  const [error, setError] = useState<string | null>(null);
   const { theme } = useTheme();
 
   useEffect(() => {
-    fetchSimpleIcons({ slugs: iconSlugs }).then(setData);
+    fetchSimpleIcons({ slugs: iconSlugs })
+      .then(setData)
+      .catch((err) => {
+        console.error("Error fetching icons:", err);
+        setError(err.message);
+      });
   }, [iconSlugs]);
 
   const renderedIcons = useMemo(() => {
@@ -78,6 +84,15 @@ export function IconCloud({ iconSlugs }: DynamicCloudProps) {
       renderCustomIcon(icon, theme || "light")
     );
   }, [data, theme]);
+
+  if (error) {
+    console.error("IconCloud error:", error);
+    return <div className="text-red-500">Error loading icons: {error}</div>;
+  }
+
+  if (!data) {
+    return <div className="text-gray-500">Loading icons...</div>;
+  }
 
   return (
     // @ts-expect-error - Cloud component props type mismatch with spread operator

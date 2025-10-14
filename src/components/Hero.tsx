@@ -1,5 +1,3 @@
-// import { ArrowDown } from "lucide-react";
-// import { Link } from "./Link";
 import { TypeWriter } from "./ui/TypeWriter";
 import { SocialLinks } from "./hero/SocialLinks";
 import { ContactInfo } from "./hero/ContactInfo";
@@ -19,7 +17,8 @@ export function Hero() {
   return (
     <section
       id="home"
-      className="min-h-screen flex items-center justify-center relative overflow-hidden">
+      className="min-h-screen flex items-center justify-center relative overflow-hidden"
+    >
       {/* Animated background with particles */}
       <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-purple-50 dark:from-gray-900 dark:to-gray-800">
         <div className="absolute inset-0 bg-grid-pattern opacity-[0.08]" />
@@ -40,14 +39,14 @@ export function Hero() {
                 Hey! Programmer
               </div>
 
-              <h1 className="text-5xl md:text-5xl lg:text-[85px] lg:py-2 font-bold text-gray-600 dark:text-gray-300 font-[Poppins]">
+              <h1 className="text-[3rem] md:text-5xl lg:text-[85px] lg:py-2 font-bold text-gray-600 dark:text-gray-300 font-[Poppins]">
                 Hi, I'm{" "}
                 <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 bg-clip-text text-transparent animate-gradient">
                   Laju
                 </span>
               </h1>
 
-              <div className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-600 dark:text-gray-300 font-[Poppins]">
+              <div className="text-2xl md:text-4xl lg:text-[2.5rem] font-bold text-gray-600 dark:text-gray-300 font-[Poppins]">
                 I'm a <TypeWriter words={roles} delay={100} />
               </div>
             </div>
@@ -58,7 +57,7 @@ export function Hero() {
           </div>
 
           {/* Right Column - Profile Image */}
-          <div className="relative order-1 md:order-2">
+          <div className="relative order-1 md:order-2 mt-5 md:mt-0">
             {/* Floating solid circular elements */}
             <div className="absolute w-24 h-24 bg-blue-600 top-0 left-0 rounded-full animate-floating" />
             <div className="absolute w-24 h-24 bg-purple-600 bottom-0 right-0 rounded-full animate-floating delay-150" />

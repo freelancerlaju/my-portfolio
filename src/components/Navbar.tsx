@@ -61,7 +61,8 @@ export function Navbar() {
                       isScrolled
                         ? "bg-white/80 dark:bg-gray-900/80 backdrop-blur-md outline outline-1 outline-blue-600"
                         : "bg-transparent"
-                    }`}>
+                    }`}
+      >
         <div className="flex items-center justify-between h-12 px-4">
           {/* Logo */}
           <div className="cursor-pointer" onClick={handleLogoClick}>
@@ -74,7 +75,8 @@ export function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="relative text-sm text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:scale-105">
+                className="relative text-sm text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:scale-105"
+              >
                 {link.label}
                 {activeSection === link.href.substring(1) && (
                   <motion.div
@@ -89,7 +91,8 @@ export function Navbar() {
             <ThemeToggle isDark={isDark} onToggle={toggleTheme} />
             <Link
               href="#contact"
-              className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-blue-600 text-white text-sm hover:bg-blue-700 hover:text-white dark:text-white dark:hover:text-white">
+              className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-blue-600 text-white text-sm hover:bg-blue-700 hover:text-white dark:text-white dark:hover:text-white"
+            >
               Request a Project
               <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
             </Link>
@@ -101,7 +104,8 @@ export function Navbar() {
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="p-2 rounded-lg bg-gray-200 dark:bg-gray-800 hover:bg-gray-300 dark:hover:bg-gray-700"
-              aria-label="Toggle menu">
+              aria-label="Toggle menu"
+            >
               {isOpen ? (
                 <X className="w-5 h-5" />
               ) : (
@@ -122,14 +126,16 @@ export function Navbar() {
                   className={`block px-3 py-2 rounded-md text-sm text-center text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800`}
                   onClick={() => {
                     setIsOpen(false);
-                  }}>
+                  }}
+                >
                   {link.label}
                 </Link>
               ))}
               <Link
                 href="#contact"
                 className="flex items-center justify-center gap-2 px-3 py-1.5 rounded-lg bg-blue-600 text-white text-sm hover:bg-blue-700 hover:text-white dark:text-white dark:hover:text-white"
-                onClick={() => setIsOpen(false)}>
+                onClick={() => setIsOpen(false)}
+              >
                 Hire Me
                 <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
               </Link>

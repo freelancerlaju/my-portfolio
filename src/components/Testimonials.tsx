@@ -11,6 +11,7 @@ const testimonials = [
     text: "Working with Laju has been an incredible experience. His attention to detail and problem-solving skills are outstanding. The projects he delivered exceeded our expectations.",
     href: "https://twitter.com/sarahdev",
   },
+
   {
     author: {
       name: "Michael Chen",
@@ -21,6 +22,7 @@ const testimonials = [
     text: "Laju's expertise in React and modern web technologies is impressive. He delivered a complex application on time and with excellent code quality.",
     href: "https://twitter.com/mikechen",
   },
+
   {
     author: {
       name: "Emily Rodriguez",
@@ -30,6 +32,7 @@ const testimonials = [
     },
     text: "Professional, reliable, and highly skilled. Laju transformed our ideas into a beautiful, functional web application. Highly recommended!",
   },
+
   {
     author: {
       name: "David Kim",
@@ -40,6 +43,7 @@ const testimonials = [
     text: "Outstanding communication and technical skills. Laju delivered exactly what we needed and provided excellent support throughout the project.",
     href: "https://twitter.com/davidkim",
   },
+
   {
     author: {
       name: "Lisa Wang",

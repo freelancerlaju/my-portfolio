@@ -1,6 +1,6 @@
 import { SectionTitle } from "./ui/SectionTitle";
 import { SkillCard } from "./ui/SkillCard";
-import { IconCloud } from "./ui/interactive-icon-cloud";
+import { SkillsProgressSection } from "./ui/SkillProgressBar";
 import {
   SiHtml5,
   SiCss3,
@@ -15,72 +15,6 @@ import {
   SiVercel,
 } from "react-icons/si";
 import { VscVscode } from "react-icons/vsc";
-const iconSlugs = [
-  // Core Web Technologies
-  "html5",
-  "css3",
-  "javascript",
-  "typescript",
-  "react",
-  "nextdotjs",
-  "tailwindcss",
-  "redux",
-
-  // Backend & Databases
-  "nodedotjs",
-  "express",
-  "python",
-  "mongodb",
-  "postgresql",
-  "firebase",
-  "prisma",
-  "graphql",
-
-  // Cloud & DevOps
-  "docker",
-  "kubernetes",
-  "amazonaws",
-  "vercel",
-  "netlify",
-  "githubactions",
-
-  // Development Tools
-  "microsoftvisualstudiocode",
-  "git",
-  "github",
-  "postman",
-  "vite",
-  "webpack",
-
-  // Testing & Quality
-  "jest",
-  "cypress",
-  "eslint",
-  "prettier",
-
-  // Design & Mobile
-  "figma",
-  "flutter",
-  "android",
-  "ios",
-
-  // Package Managers & OS
-  "npm",
-  "yarn",
-  "linux",
-  "microsoft",
-  "macos",
-
-  // Additional Popular Tools
-  "slack",
-  "notion",
-  "stripe",
-  "shopify",
-  "wordpress",
-  "unity",
-  "tensorflow",
-  "ethereum",
-];
 
 const skills = [
   {
@@ -148,32 +82,48 @@ const skills = [
   },
 ];
 
+const skillLevels = [
+  { name: "HTML", percentage: 95, color: "#e34f26" },
+  { name: "CSS", percentage: 90, color: "#1572b6" },
+  { name: "JavaScript", percentage: 88, color: "#ffd600" },
+  { name: "TypeScript", percentage: 85, color: "#3178c6" },
+  { name: "React", percentage: 90, color: "#61dafb" },
+  { name: "Next.js", percentage: 80, color: "#000000" },
+  { name: "TailwindCSS", percentage: 92, color: "#38bdf8" },
+  { name: "Redux", percentage: 75, color: "#764abc" },
+];
+
 export function Skills() {
   return (
-    <section id="skills" className="py-20">
-      <div className="container mx-auto px-6">
+    <section id="skills" className="py-12 sm:py-16 relative overflow-hidden">
+      {/* Grid Background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-purple-50 dark:from-gray-900 dark:to-gray-800">
+        <div className="absolute inset-0 bg-grid-pattern opacity-[0.08]" />
+      </div>
+
+      <div className="container mx-auto px-6 relative z-10">
         <SectionTitle>Skills</SectionTitle>
 
-        <div className="max-w-7xl mx-auto mt-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-            {/* Left side - Interactive Icon Cloud */}
-            <div className="flex justify-center lg:justify-start">
-              <div className="relative flex size-full max-w-md items-center justify-center overflow-hidden rounded-lg bg-background px-8 pb-8 pt-4 shadow-lg">
-                <IconCloud iconSlugs={iconSlugs} />
+        <div className="max-w-6xl mx-auto mt-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch">
+            {/* Left side - Skill Cards Grid */}
+            <div className="min-h-[300px] sm:min-h-[400px] lg:min-h-[450px] flex flex-col">
+              <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-3 sm:gap-4 flex-1">
+                {skills.map((tech) => (
+                  <SkillCard
+                    key={tech.name}
+                    name={tech.name}
+                    icon={tech.icon}
+                    color={tech.color}
+                    url={tech.url}
+                  />
+                ))}
               </div>
             </div>
 
-            {/* Right side - Skill Cards Grid */}
-            <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-4 sm:gap-6">
-              {skills.map((tech) => (
-                <SkillCard
-                  key={tech.name}
-                  name={tech.name}
-                  icon={tech.icon}
-                  color={tech.color}
-                  url={tech.url}
-                />
-              ))}
+            {/* Right side - Skills Progress Bar */}
+            <div className="w-full min-h-[300px] sm:min-h-[400px] lg:min-h-[450px]">
+              <SkillsProgressSection skills={skillLevels} />
             </div>
           </div>
         </div>

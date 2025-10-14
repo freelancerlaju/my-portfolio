@@ -13,6 +13,7 @@ import { Footer } from "./components/Footer";
 import LoadingScreen from "./components/loading/LoadingScreen";
 import { useLoading } from "./hooks/useLoading";
 import { ScrollToTop } from "./components/ui/ScrollToTop";
+import { ScrollProgressBar } from "./components/ui/ScrollProgressBar";
 import { Analytics } from "@vercel/analytics/react";
 
 function App() {
@@ -39,6 +40,7 @@ function App() {
         <Contact />
         <Footer />
         <ScrollToTop />
+        <ScrollProgressBar />
         <Analytics />
       </div>
     </>

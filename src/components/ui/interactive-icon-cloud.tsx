@@ -70,7 +70,14 @@ export function IconCloud({ iconSlugs }: DynamicCloudProps) {
 
   useEffect(() => {
     fetchSimpleIcons({ slugs: iconSlugs })
-      .then(setData)
+      .then((result) => {
+        // Filter out any missing icons
+        const validIcons = Object.values(result.simpleIcons).filter(
+          (icon) => icon
+        );
+        console.log(`Loaded ${validIcons.length} icons successfully`);
+        setData({ ...result, simpleIcons: result.simpleIcons });
+      })
       .catch((err) => {
         console.error("Error fetching icons:", err);
         setError(err.message);
@@ -80,9 +87,9 @@ export function IconCloud({ iconSlugs }: DynamicCloudProps) {
   const renderedIcons = useMemo(() => {
     if (!data) return null;
 
-    return Object.values(data.simpleIcons).map((icon) =>
-      renderCustomIcon(icon, theme || "light")
-    );
+    return Object.values(data.simpleIcons)
+      .filter((icon) => icon) // Filter out any null/undefined icons
+      .map((icon) => renderCustomIcon(icon, theme || "light"));
   }, [data, theme]);
 
   if (error) {
@@ -92,6 +99,10 @@ export function IconCloud({ iconSlugs }: DynamicCloudProps) {
 
   if (!data) {
     return <div className="text-gray-500">Loading icons...</div>;
+  }
+
+  if (!renderedIcons || renderedIcons.length === 0) {
+    return <div className="text-gray-500">No icons available</div>;
   }
 
   return (

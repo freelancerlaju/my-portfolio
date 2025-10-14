@@ -45,7 +45,7 @@ const iconSlugs = [
   "githubactions",
 
   // Development Tools
-  "visualstudiocode",
+  "microsoftvisualstudiocode",
   "git",
   "github",
   "postman",
@@ -68,7 +68,7 @@ const iconSlugs = [
   "npm",
   "yarn",
   "linux",
-  "windows",
+  "microsoft",
   "macos",
 
   // Additional Popular Tools

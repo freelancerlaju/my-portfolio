@@ -33,14 +33,8 @@ export default defineConfig({
         },
       },
     },
-    // Improve minification
-    minify: "terser",
-    terserOptions: {
-      compress: {
-        drop_console: true, // Remove console.logs in production
-        drop_debugger: true,
-      },
-    },
+    // Improve minification with esbuild (faster than terser)
+    minify: "esbuild",
     // Optimize chunk size
     chunkSizeWarningLimit: 1000,
     // Enable CSS code splitting

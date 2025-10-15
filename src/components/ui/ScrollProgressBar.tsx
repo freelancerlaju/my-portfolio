@@ -34,48 +34,48 @@ export function ScrollProgressBar() {
   }, []);
 
   return (
-    <div className="fixed top-0 left-0 w-full h-1 z-50 bg-transparent">
-      {/* Background track */}
-      <div className="absolute inset-0 bg-gradient-to-r from-gray-200/20 to-gray-300/20 dark:from-gray-800/30 dark:to-gray-700/30 backdrop-blur-sm" />
+    <div className="fixed top-0 left-0 w-full h-0.5 z-50">
+      {/* Glass background track */}
+      <div className="absolute inset-0 bg-white/5 dark:bg-black/10 backdrop-blur-md border-b border-white/10 dark:border-white/5" />
 
-      {/* Progress bar */}
+      {/* Progress bar container */}
       <div
-        className="h-full relative overflow-hidden transition-all duration-150 ease-out"
+        className="h-full relative overflow-hidden"
         style={{
           width: `${scrollProgress}%`,
         }}
       >
-        {/* Main gradient */}
-        <div
-          className="absolute inset-0 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500"
-          style={{
-            boxShadow: `0 0 10px rgba(59, 130, 246, 0.5), 0 0 20px rgba(147, 51, 234, 0.3), 0 0 30px rgba(236, 72, 153, 0.2)`,
-          }}
-        />
+        {/* Glass progress bar */}
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-600/90 via-indigo-600/90 to-purple-600/90 backdrop-blur-sm border-r border-white/20 dark:border-white/10">
+          {/* Inner glow */}
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-500/50 via-indigo-500/50 to-purple-500/50" />
 
-        {/* Shimmer effect */}
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent animate-pulse" />
+          {/* Glass highlight */}
+          <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/60 to-transparent" />
 
-        {/* Glow effect */}
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-400/30 via-purple-400/30 to-pink-400/30 blur-sm" />
-
-        {/* Highlight line */}
-        <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-white/60 to-transparent" />
-      </div>
-
-      {/* Animated dots */}
-      <div className="absolute top-1/2 transform -translate-y-1/2 right-0 flex space-x-1">
-        {[...Array(3)].map((_, i) => (
+          {/* Subtle shimmer */}
           <div
-            key={i}
-            className="w-1 h-1 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 animate-pulse"
+            className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
             style={{
-              animationDelay: `${i * 0.2}s`,
-              opacity: scrollProgress > 90 ? 1 : 0.3,
+              transform: `translateX(${scrollProgress * 2}px)`,
+              transition: "transform 0.1s ease-out",
             }}
           />
-        ))}
+        </div>
       </div>
+
+      {/* Professional indicator dot */}
+      {scrollProgress > 5 && (
+        <div
+          className="absolute top-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full bg-white/90 dark:bg-white/70 shadow-lg backdrop-blur-sm border border-white/40 dark:border-white/30"
+          style={{
+            left: `${scrollProgress}%`,
+            transform: "translate(-50%, -50%)",
+            boxShadow:
+              "0 0 8px rgba(255, 255, 255, 0.4), 0 0 16px rgba(99, 102, 241, 0.3), 0 0 24px rgba(147, 51, 234, 0.2)",
+          }}
+        />
+      )}
     </div>
   );
 }

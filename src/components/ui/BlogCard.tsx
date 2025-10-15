@@ -1,5 +1,3 @@
-import React from "react";
-
 interface BlogCardProps {
   title: string;
   brief: string;
@@ -13,7 +11,8 @@ export function BlogCard({ title, brief, coverImage }: BlogCardProps) {
       href={`#`}
       target="_blank"
       rel="noopener noreferrer"
-      className="group block overflow-hidden rounded-xl shadow-lg border border-gray-300 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-400 bg-white dark:bg-gray-900 hover:shadow-xl">
+      className="group block overflow-hidden rounded-xl shadow-lg border border-gray-300 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-400 bg-white dark:bg-gray-900 hover:shadow-xl"
+    >
       {/* Blog Cover Image */}
       <div className="p-3 pt-4 pb-0 overflow-hidden rounded-lg">
         {coverImage ? (

@@ -1,42 +1,14 @@
-import { IconCloud } from "@/components/ui/interactive-icon-cloud";
+import React from "react";
+import { FeaturesSectionWithHoverEffects } from "./feature-section-with-hover-effects";
 
-const slugs = [
-  "typescript",
-  "javascript",
-  "dart",
-  "java",
-  "react",
-  "flutter",
-  "android",
-  "html5",
-  "css3",
-  "nodedotjs",
-  "express",
-  "nextdotjs",
-  "prisma",
-  "amazonaws",
-  "postgresql",
-  "firebase",
-  "nginx",
-  "vercel",
-  "testinglibrary",
-  "jest",
-  "cypress",
-  "docker",
-  "git",
-  "jira",
-  "github",
-  "gitlab",
-  "visualstudiocode",
-  "androidstudio",
-  "sonarqube",
-  "figma",
-];
-
-export function IconCloudDemo() {
+function FeaturesSectionWithHoverEffectsDemo() {
   return (
-    <div className="relative flex size-full max-w-lg items-center justify-center overflow-hidden rounded-lg border bg-background px-20 pb-20 pt-8 ">
-      <IconCloud iconSlugs={slugs} />
+    <div className="min-h-screen w-full">
+      <div className="absolute top-0 left-0 w-full">
+        <FeaturesSectionWithHoverEffects />
+      </div>
     </div>
   );
 }
+
+export { FeaturesSectionWithHoverEffectsDemo };

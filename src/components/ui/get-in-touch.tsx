@@ -93,18 +93,18 @@ export const ProfessionalConnect = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 overflow-hidden relative w-full">
+    <div className="min-h-screen bg-gradient-to-br from-background via-muted/20 to-background overflow-hidden relative w-full">
       {/* Animated Background */}
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-blue-900/20 via-transparent to-transparent"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-purple-900/20 via-transparent to-transparent"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-blue-500/10 dark:from-blue-900/20 via-transparent to-transparent"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-purple-500/10 dark:from-purple-900/20 via-transparent to-transparent"></div>
 
         {/* Animated Grid */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]"></div>
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,hsl(var(--border))_1px,transparent_1px),linear-gradient(to_bottom,hsl(var(--border))_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]"></div>
 
         {/* Floating Orbs */}
-        <div className="absolute top-20 left-20 w-72 h-72 bg-blue-600/30 rounded-full blur-[128px] animate-pulse"></div>
-        <div className="absolute bottom-20 right-20 w-96 h-96 bg-purple-600/20 rounded-full blur-[128px] animate-pulse delay-700"></div>
+        <div className="absolute top-20 left-20 w-72 h-72 bg-blue-500/20 dark:bg-blue-600/30 rounded-full blur-[128px] animate-pulse"></div>
+        <div className="absolute bottom-20 right-20 w-96 h-96 bg-purple-500/15 dark:bg-purple-600/20 rounded-full blur-[128px] animate-pulse delay-700"></div>
       </div>
 
       {/* Main Content */}
@@ -122,14 +122,15 @@ export const ProfessionalConnect = () => {
           </div>
 
           <h1 className="text-5xl md:text-7xl font-bold mb-6 tracking-tight">
-            <span className="bg-gradient-to-br from-white via-white to-gray-400 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-br from-foreground via-foreground to-muted-foreground bg-clip-text text-transparent">
               Get In Touch
             </span>
           </h1>
 
-          <p className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed">
-            Join our vibrant community across multiple platforms and stay
-            connected with the latest updates
+          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+            Feel free to contact me via LinkedIn, X (Twitter), or email (DMs are
+            open). I'll response as soon as possible. If you have an interesting
+            project or collaboration opportunity, I'd love to hear from you.
           </p>
         </div>
 
@@ -138,10 +139,10 @@ export const ProfessionalConnect = () => {
           {/* Left Side: Social Cards Grid */}
           <div className="space-y-4">
             <div className="text-center lg:text-left">
-              <h2 className="text-3xl font-bold text-white mb-4">
+              <h2 className="text-3xl font-bold text-foreground mb-4">
                 Connect With Me
               </h2>
-              <p className="text-gray-400 text-lg">
+              <p className="text-muted-foreground text-lg">
                 Follow me on social platforms to stay updated with my latest
                 work and insights.
               </p>
@@ -164,7 +165,7 @@ export const ProfessionalConnect = () => {
                   onMouseLeave={() => setHoveredIndex(null)}
                 >
                   {/* Card Container */}
-                  <div className="relative bg-gradient-to-br from-slate-800/50 to-slate-900/50 backdrop-blur-xl rounded-xl p-6 border border-slate-700/50 overflow-hidden transition-all duration-500 hover:scale-105 hover:border-slate-600/50">
+                  <div className="relative bg-gradient-to-br from-card/50 to-card/30 backdrop-blur-xl rounded-xl p-6 border border-border/50 overflow-hidden transition-all duration-500 hover:scale-105 hover:border-border">
                     {/* Hover Gradient Effect */}
                     <div
                       className={`absolute inset-0 bg-gradient-to-br ${platform.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-500`}
@@ -189,16 +190,16 @@ export const ProfessionalConnect = () => {
                       </div>
 
                       {/* Text */}
-                      <h3 className="text-white font-semibold text-sm mb-1 transition-colors duration-300">
+                      <h3 className="text-foreground font-semibold text-sm mb-1 transition-colors duration-300">
                         {platform.name}
                       </h3>
-                      <p className="text-gray-500 text-xs transition-colors duration-300 group-hover:text-gray-400">
+                      <p className="text-muted-foreground text-xs transition-colors duration-300 group-hover:text-foreground/80">
                         {platform.description}
                       </p>
                     </div>
 
                     {/* Shimmer Effect */}
-                    <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/5 to-transparent"></div>
+                    <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-foreground/5 to-transparent"></div>
                   </div>
                 </a>
               ))}
@@ -207,12 +208,12 @@ export const ProfessionalConnect = () => {
 
           {/* Right Side: Contact Form */}
           <div className="relative md:mt-[3rem]">
-            <div className="bg-gradient-1 to-br from-slate-800/50 to-slate-900/50 backdrop-blur-xl rounded-2xl p-8 border border-slate-700/50">
+            <div className="bg-gradient-to-br from-card/50 to-card/30 backdrop-blur-xl rounded-2xl p-8 border border-border/50">
               <div className="text-center mb-6">
-                <h2 className="text-3xl font-bold text-white mb-4">
+                <h2 className="text-3xl font-bold text-foreground mb-4">
                   Send a Message
                 </h2>
-                {/* <p className="text-gray-400 text-lg">
+                {/* <p className="text-muted-foreground text-lg">
                   Have a project in mind? Let's discuss how we can work
                   together.
                 </p> */}
@@ -232,10 +233,10 @@ export const ProfessionalConnect = () => {
 
       {/* Mouse Follow Light */}
       <div
-        className="pointer-events-none fixed w-96 h-96 rounded-full opacity-20 blur-[100px] transition-all duration-200 ease-out"
+        className="pointer-events-none fixed w-96 h-96 rounded-full opacity-10 dark:opacity-20 blur-[100px] transition-all duration-200 ease-out"
         style={{
           background:
-            "radial-gradient(circle, rgba(147, 51, 234, 0.3), transparent)",
+            "radial-gradient(circle, hsl(var(--primary) / 0.3), transparent)",
           left: `${mousePosition.x - 192}px`,
           top: `${mousePosition.y - 192}px`,
         }}

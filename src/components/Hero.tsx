@@ -1,9 +1,10 @@
 import { TypeWriter } from "./ui/TypeWriter";
 import { SocialLinks } from "./hero/SocialLinks";
-import { ContactInfo } from "./hero/ContactInfo";
+// import { ContactInfo } from "./hero/ContactInfo";
 import { ActionButtons } from "./hero/ActionButtons";
+import OrbitingSkills from "./ui/orbiting-skills";
 
-import ScrollDown from "./ui/ScrollDown";
+// import ScrollDown from "./ui/ScrollDown";
 
 export function Hero() {
   const roles = [
@@ -27,11 +28,11 @@ export function Hero() {
         <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-purple-400/30 dark:bg-purple-600/30 rounded-full blur-3xl animate-pulse delay-1000" />
       </div>
 
-      <div className="container mx-auto px-10 py-16 relative z-10">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+      <div className="container mx-auto px-4 md:px-12 pt-20 pb-8 md:py-10 relative z-10 h-full">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12 items-center h-full">
           {/* Left Column - Content */}
-          <div className="flex flex-col items-center justify-center text-center space-y-4 order-2 md:order-1">
-            <div className="space-y-2">
+          <div className="flex flex-col items-center md:items-start justify-center text-center md:text-left space-y-4 md:space-y-6 order-2 md:order-1 w-full md:pr-4">
+            <div className="space-y-2 md:space-y-4 w-full">
               <div className="inline-block bg-blue-100 dark:bg-blue-900/50 backdrop-blur-sm text-blue-600 dark:text-blue-300 text-sm font-medium px-4 py-2 rounded-full">
                 <span className="inline-block origin-[70%_70%] animate-wave">
                   👋
@@ -39,37 +40,35 @@ export function Hero() {
                 Hey! Programmer
               </div>
 
-              <h1 className="text-[3rem] md:text-5xl lg:text-[85px] lg:py-2 font-bold text-gray-600 dark:text-gray-300 font-[Poppins]">
+              <h1 className="text-5xl sm:text-5xl md:text-6xl lg:text-[5rem] font-bold text-gray-600 dark:text-gray-300 font-[Poppins] leading-tight">
                 Hi, I'm{" "}
                 <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 bg-clip-text text-transparent animate-gradient">
                   Laju
                 </span>
               </h1>
 
-              <div className="text-2xl md:text-4xl lg:text-[2.5rem] font-bold text-gray-600 dark:text-gray-300 font-[Poppins]">
+              <div className="text-3xl py-2 sm:text-2xl md:text-3xl lg:text-[3rem] font-bold text-gray-600 dark:text-gray-300 font-[Poppins]">
                 I'm a <TypeWriter words={roles} delay={100} />
               </div>
             </div>
 
-            <ContactInfo />
+            <div>
+              <p className="text-lg text-gray-700 dark:text-gray-300 font-[Roboto Condensed] font-light">
+                I’m a front-end developer from bangladesh. I love learning how
+                to build fast, accessible and scalable web applications. I
+                always keep an eye on the JavaScript ecosystem for what comes
+                next and I'm excited to continue.
+              </p>
+            </div>
+
+            {/* <ContactInfo /> */}
             <ActionButtons />
             <SocialLinks />
           </div>
 
-          {/* Right Column - Profile Image */}
-          <div className="relative order-1 md:order-2 mt-5 md:mt-0">
-            {/* Floating solid circular elements */}
-            <div className="absolute w-24 h-24 bg-blue-600 top-0 left-0 rounded-full animate-floating" />
-            <div className="absolute w-24 h-24 bg-purple-600 bottom-0 right-0 rounded-full animate-floating delay-150" />
-            <div className="absolute w-20 h-20 bg-green-500 top-4 right-4 rounded-full animate-floating delay-300" />
-            <div className="absolute w-20 h-20 bg-yellow-500 bottom-4 left-4 rounded-full animate-floating delay-450" />
-
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-full blur-3xl animate-pulse" />
-            <img
-              src="/assets/profile.jpeg"
-              alt="freelancer laju"
-              className="relative w-full max-w-lg mx-auto rounded-full shadow-2xl transform hover:scale-105 transition-transform duration-500"
-            />
+          {/* Right Column - Orbiting Skills */}
+          <div className="relative order-1 md:order-2 flex items-center justify-center w-full h-full min-h-[400px]">
+            <OrbitingSkills />
           </div>
         </div>
 
@@ -82,9 +81,9 @@ export function Hero() {
           </Link>
         </div> */}
 
-        <div className="absolute bottom-[-1rem] left-1/2 -translate-x-1/2">
+        {/* <div className="absolute bottom-[-1rem] left-1/2 -translate-x-1/2">
           <ScrollDown />
-        </div>
+        </div> */}
       </div>
     </section>
   );

@@ -1,4 +1,10 @@
-import React, { useCallback, useEffect, useRef, ReactNode } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useRef,
+  useMemo,
+  ReactNode,
+} from "react";
 
 interface GlowCardProps {
   children: ReactNode;
@@ -26,19 +32,19 @@ const sizeMap = {
 };
 
 // Throttle function for performance
-const throttle = (func: Function, delay: number) => {
-  let timeoutId: NodeJS.Timeout;
+const throttle = (func: (e: PointerEvent) => void, delay: number) => {
+  let timeoutId: ReturnType<typeof setTimeout>;
   let lastExecTime = 0;
-  return function (...args: any[]) {
+  return function (e: PointerEvent) {
     const currentTime = Date.now();
 
     if (currentTime - lastExecTime > delay) {
-      func.apply(this, args);
+      func(e);
       lastExecTime = currentTime;
     } else {
       clearTimeout(timeoutId);
       timeoutId = setTimeout(() => {
-        func.apply(this, args);
+        func(e);
         lastExecTime = Date.now();
       }, delay - (currentTime - lastExecTime));
     }
@@ -58,8 +64,8 @@ const GlowCard: React.FC<GlowCardProps> = ({
   const cardRef = useRef<HTMLDivElement>(null);
   const innerRef = useRef<HTMLDivElement>(null);
 
-  const throttledSyncPointer = useCallback(
-    throttle((e: PointerEvent) => {
+  const syncPointer = useCallback(
+    (e: PointerEvent) => {
       if (!enableGlow || !cardRef.current) return;
 
       const { clientX: x, clientY: y } = e;
@@ -73,8 +79,13 @@ const GlowCard: React.FC<GlowCardProps> = ({
         "--yp",
         (y / window.innerHeight).toFixed(2)
       );
-    }, 16), // ~60fps
+    },
     [enableGlow]
+  );
+
+  const throttledSyncPointer = useMemo(
+    () => throttle(syncPointer, 16), // ~60fps
+    [syncPointer]
   );
 
   useEffect(() => {
@@ -97,7 +108,7 @@ const GlowCard: React.FC<GlowCardProps> = ({
   };
 
   const getInlineStyles = () => {
-    const baseStyles: React.CSSProperties = {
+    const baseStyles: React.CSSProperties & Record<string, string | number> = {
       "--base": base,
       "--spread": spread,
       "--radius": "14",

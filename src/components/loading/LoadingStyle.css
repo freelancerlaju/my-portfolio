@@ -1,89 +1,78 @@
-@keyframes blinkCursor {
-  50% {
-    border-right-color: transparent;
+/* From Uiverse.io by Vosoone */
+.main-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+.loader {
+  width: 100%;
+  max-width: 800px;
+}
+
+.trace-bg {
+  stroke: #333;
+  stroke-width: 1.8;
+  fill: none;
+}
+
+.trace-flow {
+  stroke-width: 1.8;
+  fill: none;
+  stroke-dasharray: 40 400;
+  stroke-dashoffset: 438;
+  filter: drop-shadow(0 0 6px currentColor);
+  animation: flow 3s cubic-bezier(0.5, 0, 0.9, 1) infinite;
+}
+
+.yellow {
+  stroke: #ffea00;
+  color: #ffea00;
+}
+
+.blue {
+  stroke: #00ccff;
+  color: #00ccff;
+}
+
+.green {
+  stroke: #00ff15;
+  color: #00ff15;
+}
+
+.purple {
+  stroke: #9900ff;
+  color: #9900ff;
+}
+
+.red {
+  stroke: #ff3300;
+  color: #ff3300;
+}
+
+@keyframes flow {
+  to {
+    stroke-dashoffset: 0;
   }
 }
 
-@keyframes typeAndDelete {
-  0%,
-  10% {
-    width: 0;
-  }
-  45%,
-  55% {
-    width: 6.2em;
-  } /* adjust width based on content */
-  90%,
-  100% {
-    width: 0;
-  }
+/* Chip */
+.chip-body {
+  rx: 20;
+  ry: 20;
 }
 
-.terminal-loader {
-  border: 0.1em solid #333;
-  background-color: #1a1a1a;
-  color: #0f0;
-  font-family: "Courier New", Courier, monospace;
-  font-size: 1em;
-  padding: 1.5em 1em;
-  width: 12em;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  border-radius: 4px;
-  position: relative;
-  overflow: hidden;
-  box-sizing: border-box;
+/* Text inside chip */
+.chip-text {
+  font-weight: bold;
+  letter-spacing: 1px;
 }
 
-.terminal-header {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 1.5em;
-  background-color: #333;
-  border-top-left-radius: 4px;
-  border-top-right-radius: 4px;
-  padding: 0 0.4em;
-  box-sizing: border-box;
-}
-
-.terminal-controls {
-  float: right;
-}
-
-.control {
-  display: inline-block;
-  width: 0.6em;
-  height: 0.6em;
-  margin-left: 0.4em;
-  border-radius: 50%;
-  background-color: #777;
-}
-
-.control.close {
-  background-color: #e33;
-}
-
-.control.minimize {
-  background-color: #ee0;
-}
-
-.control.maximize {
-  background-color: #0b0;
-}
-
-.terminal-title {
-  float: left;
-  line-height: 1.5em;
-  color: #eee;
-}
-
-.text {
-  display: inline-block;
-  white-space: nowrap;
-  overflow: hidden;
-  border-right: 0.2em solid green; /* Cursor */
-  animation: typeAndDelete 4s steps(11) infinite,
-    blinkCursor 0.5s step-end infinite alternate;
-  margin-top: 1.5em;
+/* Pins */
+.chip-pin {
+  stroke: #444;
+  stroke-width: 0.5;
+  filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.6));
 }

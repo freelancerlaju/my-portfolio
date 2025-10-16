@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { Github, Linkedin, Instagram } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
@@ -33,17 +34,28 @@ const links = [
 export function SocialLinks() {
   return (
     <div className="flex flex-wrap gap-2 justify-center md:justify-start">
-      {links.map(({ href, icon, label }) => (
-        <a
+      {links.map(({ href, icon, label }, index) => (
+        <motion.a
           key={href}
           href={href}
           target="_blank"
           rel="noopener noreferrer"
           aria-label={label}
-          className="group relative p-3 bg-gray-200 dark:bg-gray-800 rounded-lg hover:scale-110 transform transition-transform duration-300">
+          className="group relative p-3 bg-gray-200 dark:bg-gray-800 rounded-lg"
+          whileHover={{ scale: 1.1, y: -4 }}
+          whileTap={{ scale: 0.95 }}
+          initial={{ opacity: 0, scale: 0 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{
+            type: "spring",
+            stiffness: 260,
+            damping: 20,
+            delay: index * 0.1,
+          }}
+        >
           <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-purple-600/20 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
-          <div>{icon}</div>
-        </a>
+          <div className="relative z-10">{icon}</div>
+        </motion.a>
       ))}
     </div>
   );

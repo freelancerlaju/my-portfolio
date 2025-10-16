@@ -53,6 +53,7 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    scroll-padding-top: 80px; /* Account for fixed navbar */
     -webkit-tap-highlight-color: transparent;
   }
 
@@ -93,7 +94,7 @@
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
-  
+
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
   }

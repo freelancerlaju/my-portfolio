@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { SectionTitle } from "./ui/SectionTitle";
 import { ProjectCard } from "./ui/ProjectCard";
 import {
@@ -180,16 +181,48 @@ const projects = [
 ];
 
 export function Projects() {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+        delayChildren: 0.1,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30, scale: 0.9 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 0.5,
+        ease: "easeOut",
+      },
+    },
+  };
+
   return (
     <section id="projects" className="py-20 bg-gray-50 dark:bg-gray-800">
       <div className="container mx-auto px-8">
         <SectionTitle>Projects</SectionTitle>
 
-        <div className="max-w-6xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <motion.div
+          className="max-w-6xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={containerVariants}
+        >
           {projects.map((project) => (
-            <ProjectCard key={project.title} {...project} />
+            <motion.div key={project.title} variants={itemVariants}>
+              <ProjectCard {...project} />
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

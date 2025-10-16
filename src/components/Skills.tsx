@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { SectionTitle } from "./ui/SectionTitle";
 import { SkillCard } from "./ui/SkillCard";
 import { SkillsProgressSection } from "./ui/SkillProgressBar";
@@ -94,6 +95,41 @@ const skillLevels = [
 ];
 
 export function Skills() {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.08,
+        delayChildren: 0.1,
+      },
+    },
+  };
+
+  const leftCardVariants = {
+    hidden: { opacity: 0, x: -50 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        duration: 0.5,
+        ease: "easeOut",
+      },
+    },
+  };
+
+  const rightCardVariants = {
+    hidden: { opacity: 0, x: 50 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut",
+      },
+    },
+  };
+
   return (
     <section id="skills" className="py-12 sm:py-16 relative overflow-hidden">
       {/* Grid Background */}
@@ -104,10 +140,19 @@ export function Skills() {
       <div className="container mx-auto px-6 relative z-10">
         <SectionTitle>Skills</SectionTitle>
 
-        <div className="max-w-6xl mx-auto mt-6">
+        <motion.div
+          className="max-w-6xl mx-auto mt-6"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={containerVariants}
+        >
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch">
             {/* Left side - Skill Cards Grid */}
-            <div className="min-h-[300px] sm:min-h-[400px] lg:min-h-[450px] flex flex-col">
+            <motion.div
+              className="min-h-[300px] sm:min-h-[400px] lg:min-h-[450px] flex flex-col"
+              variants={leftCardVariants}
+            >
               <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-3 sm:gap-4 flex-1">
                 {skills.map((tech) => (
                   <SkillCard
@@ -119,14 +164,17 @@ export function Skills() {
                   />
                 ))}
               </div>
-            </div>
+            </motion.div>
 
             {/* Right side - Skills Progress Bar */}
-            <div className="w-full min-h-[300px] sm:min-h-[400px] lg:min-h-[450px]">
+            <motion.div
+              className="w-full min-h-[300px] sm:min-h-[400px] lg:min-h-[450px]"
+              variants={rightCardVariants}
+            >
               <SkillsProgressSection skills={skillLevels} />
-            </div>
+            </motion.div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

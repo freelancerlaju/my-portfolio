@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { User2, Code2, Lightbulb } from "lucide-react";
 import { GoGoal } from "react-icons/go";
 import { SectionTitle } from "./ui/SectionTitle";
+import { AnimatedText } from "@/components/ui/animated-underline-text-one";
 
 const aboutSections = [
   {
@@ -84,14 +85,23 @@ export function About() {
   };
 
   return (
-    <section id="about" className="py-20 relative overflow-hidden">
+    <section id="about" className="py-10 relative overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-purple-50 dark:from-gray-900 dark:to-gray-800">
         <div className="absolute inset-0 bg-grid-pattern opacity-[0.06]" />
       </div>
 
       <div className="container mx-auto px-6 relative">
-        <SectionTitle>About Me</SectionTitle>
+        <SectionTitle>
+          <AnimatedText
+            text="About Me"
+            textClassName="text-2xl md:text-4xl font-extrabold text-blue-600 text-[#21359C]"
+            underlineClassName="text-red-500"
+            underlinePath="M 0,10 Q 75,0 150,10 Q 225,20 300,10"
+            underlineHoverPath="M 0,10 Q 75,20 150,10 Q 225,0 300,10"
+            underlineDuration={2.0}
+          />
+        </SectionTitle>
 
         {/* Introduction */}
         <motion.div
@@ -135,39 +145,37 @@ export function About() {
           viewport={{ once: true, margin: "-100px" }}
           variants={containerVariants}
         >
-          {aboutSections.map(
-            ({ icon: Icon, title, description, color }, index) => (
-              <motion.div
-                key={title}
-                className="relative group"
-                variants={cardVariants}
-                whileHover={{ y: -8, transition: { duration: 0.3 } }}
-              >
-                {/* Background Effect */}
-                <div
-                  className={`absolute inset-0 ${color} rounded-xl blur-xl opacity-20 group-hover:opacity-60 transition-opacity duration-300 pointer-events-none`}
-                />
+          {aboutSections.map(({ icon: Icon, title, description, color }) => (
+            <motion.div
+              key={title}
+              className="relative group"
+              variants={cardVariants}
+              whileHover={{ y: -8, transition: { duration: 0.3 } }}
+            >
+              {/* Background Effect */}
+              <div
+                className={`absolute inset-0 ${color} rounded-xl blur-xl opacity-20 group-hover:opacity-60 transition-opacity duration-300 pointer-events-none`}
+              />
 
-                {/* Card Content */}
-                <div className="relative bg-white dark:bg-gray-900 p-6 border border-gray-200 dark:border-gray-700 rounded-xl shadow-md hover:shadow-lg transition-transform duration-300 transform hover:-translate-y-1">
-                  <div className="flex items-center mb-4 space-x-4">
-                    {/* Icon */}
-                    <div className={`p-3 ${color} rounded-lg`}>
-                      <Icon className="w-6 h-6 text-white" />
-                    </div>
-                    <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-100">
-                      {title}
-                    </h3>
+              {/* Card Content */}
+              <div className="relative bg-white dark:bg-gray-900 p-6 border border-gray-200 dark:border-gray-700 rounded-xl shadow-md hover:shadow-lg transition-transform duration-300 transform hover:-translate-y-1">
+                <div className="flex items-center mb-4 space-x-4">
+                  {/* Icon */}
+                  <div className={`p-3 ${color} rounded-lg`}>
+                    <Icon className="w-6 h-6 text-white" />
                   </div>
-                  <ul className="text-sm sm:text-base list-disc pl-6 text-gray-600 dark:text-gray-300 space-y-1">
-                    {description.map((point, index) => (
-                      <li key={index}>{point}</li>
-                    ))}
-                  </ul>
+                  <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-100">
+                    {title}
+                  </h3>
                 </div>
-              </motion.div>
-            )
-          )}
+                <ul className="text-sm sm:text-base list-disc pl-6 text-gray-600 dark:text-gray-300 space-y-1">
+                  {description.map((point, index) => (
+                    <li key={index}>{point}</li>
+                  ))}
+                </ul>
+              </div>
+            </motion.div>
+          ))}
         </motion.div>
       </div>
     </section>

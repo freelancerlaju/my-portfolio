@@ -95,7 +95,7 @@ export function NavBar({ items, className }: NavBarProps) {
         className
       )}
     >
-      <div className="flex items-center gap-2 sm:gap-3 md:gap-4 bg-background/5 border border-border backdrop-blur-lg py-2 px-2 rounded-full shadow-lg max-w-[calc(100vw-2rem)] sm:max-w-none">
+      <div className="flex items-center gap-1 sm:gap-2 md:gap-3 lg:gap-4 bg-background/5 border border-border backdrop-blur-lg py-1.5 sm:py-2 px-1.5 sm:px-2 rounded-full shadow-lg max-w-[calc(100vw-1rem)] sm:max-w-none">
         {items.map((item) => {
           const Icon = item.icon;
           const isActive = activeTab === item.name;
@@ -106,14 +106,14 @@ export function NavBar({ items, className }: NavBarProps) {
               href={item.url}
               onClick={() => setActiveTab(item.name)}
               className={cn(
-                "relative cursor-pointer text-xs sm:text-sm font-semibold px-3 sm:px-4 md:px-6 py-2 sm:py-2.5 rounded-full transition-colors flex-shrink-0",
+                "relative cursor-pointer text-xs sm:text-sm font-semibold px-2 sm:px-3 md:px-4 lg:px-6 py-1.5 sm:py-2 md:py-2.5 rounded-full transition-colors flex-shrink-0",
                 "text-foreground/80 hover:text-primary",
                 isActive && "bg-muted text-primary"
               )}
             >
               <span className="hidden md:inline">{item.name}</span>
               <span className="md:hidden flex items-center justify-center">
-                <Icon size={16} strokeWidth={2.5} />
+                <Icon size={14} strokeWidth={2.5} />
               </span>
               {isActive && (
                 <motion.div
@@ -136,7 +136,7 @@ export function NavBar({ items, className }: NavBarProps) {
             </Link>
           );
         })}
-        <div className="flex-shrink-0 ml-2 sm:ml-3 pl-2 sm:pl-3 border-l border-border/30">
+        <div className="flex-shrink-0 ml-1 sm:ml-2 md:ml-3 pl-1 sm:pl-2 md:pl-3 border-l border-border/30">
           <ThemeToggle />
         </div>
       </div>

@@ -4,6 +4,9 @@ export default {
   darkMode: "class",
   theme: {
     extend: {
+      screens: {
+        sm: "400px",
+      },
       fontFamily: {
         sans: ["Inter var", "sans-serif"],
       },

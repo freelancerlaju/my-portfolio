@@ -397,8 +397,10 @@ const OrbitingSkill = memo(({ config, angle }: OrbitingSkillProps) => {
       style={{
         width: `${size}px`,
         height: `${size}px`,
-        transform: `translate(calc(${x}px - 50%), calc(${y}px - 50%))`,
+        transform: `translate3d(calc(${x}px - 50%), calc(${y}px - 50%), 0)`,
         zIndex: isHovered ? 20 : 10,
+        willChange: "transform",
+        backfaceVisibility: "hidden",
       }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
@@ -414,6 +416,8 @@ const OrbitingSkill = memo(({ config, angle }: OrbitingSkillProps) => {
           boxShadow: isHovered
             ? `0 0 30px ${iconComponents[iconType]?.color}40, 0 0 60px ${iconComponents[iconType]?.color}20`
             : undefined,
+          transform: "translateZ(0)",
+          backfaceVisibility: "hidden",
         }}
       >
         <SkillIcon type={iconType} />
@@ -523,12 +527,20 @@ export default function OrbitingSkills() {
 
     let animationFrameId: number;
     let lastTime = performance.now();
+    let accumulatedTime = 0;
+    const updateInterval = 1000 / 60; // 60 FPS cap
 
     const animate = (currentTime: number) => {
-      const deltaTime = (currentTime - lastTime) / 1000;
+      const deltaTime = currentTime - lastTime;
       lastTime = currentTime;
+      accumulatedTime += deltaTime;
 
-      setTime((prevTime) => prevTime + deltaTime);
+      // Only update state at target frame rate to reduce re-renders
+      if (accumulatedTime >= updateInterval) {
+        setTime((prevTime) => prevTime + accumulatedTime / 1000);
+        accumulatedTime = 0;
+      }
+
       animationFrameId = requestAnimationFrame(animate);
     };
 
@@ -556,6 +568,10 @@ export default function OrbitingSkills() {
     <main className="w-full flex items-center justify-center overflow-hidden">
       <div
         className="relative w-full h-[400px] sm:h-[500px] md:h-[600px] lg:h-[700px] flex items-center justify-center"
+        style={{
+          transform: "translateZ(0)",
+          backfaceVisibility: "hidden",
+        }}
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => setIsPaused(false)}
       >

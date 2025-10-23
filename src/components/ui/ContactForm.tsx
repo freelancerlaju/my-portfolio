@@ -32,25 +32,68 @@ export function ContactForm() {
     setErrorMessage("");
 
     try {
-      const response = await fetch("https://formspree.io/f/mvggvyar", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
+      const emailjsServiceId = import.meta.env.VITE_EMAILJS_SERVICE_ID as
+        | string
+        | undefined;
+      const emailjsTemplateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID as
+        | string
+        | undefined;
+      const emailjsPublicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY as
+        | string
+        | undefined;
+
+      let response: Response;
+
+      if (emailjsServiceId && emailjsTemplateId && emailjsPublicKey) {
+        // Send via EmailJS REST API
+        const emailjsApiUrl =
+          (import.meta.env.VITE_EMAILJS_API_URL as string | undefined) ||
+          "https://api.emailjs.com/api/v1.0/email/send";
+
+        const payload = {
+          service_id: emailjsServiceId,
+          template_id: emailjsTemplateId,
+          public_key: emailjsPublicKey,
+          template_params: {
+            from_name: formData.name,
+            from_email: formData.email,
+            message: formData.message,
+          },
+        };
+
+        response = await fetch(emailjsApiUrl, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        });
+      } else {
+        // Fallback to Formspree
+        response = await fetch("https://formspree.io/f/mvggvyar", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(formData),
+        });
+      }
 
       if (response.ok) {
         setStatus("success");
         setFormData({ name: "", email: "", message: "" }); // Reset the form
         setShowToast(true); // Show toast notification
       } else {
-        const errorData = await response.json();
-        setErrorMessage(
-          errorData.error || "Something went wrong. Please try again."
-        );
+        let message = "Something went wrong. Please try again.";
+        try {
+          const errorData = await response.json();
+          message = errorData.error || errorData.message || message;
+        } catch {}
+        setErrorMessage(message);
         setStatus("error");
       }
-    } catch {
-      setErrorMessage("An unexpected error occurred. Please try again.");
+    } catch (err) {
+      setErrorMessage(
+        err instanceof Error
+          ? err.message
+          : "An unexpected error occurred. Please try again."
+      );
       setStatus("error");
     }
   };
@@ -67,7 +110,7 @@ export function ContactForm() {
             Name
           </label>
           <div className="relative">
-            <div className="absolute inset-y-0 left-3 flex items-center text-muted-foreground">
+            <div className="absolute inset-y-0 left-3 flex items-center text-foreground/70 hover:text-primary z-10 transition-colors">
               <User className="w-5 h-5" />
             </div>
             <input
@@ -78,7 +121,7 @@ export function ContactForm() {
               onChange={handleChange}
               required
               placeholder="Enter your name"
-              className="w-full pl-10 pr-4 py-3 rounded-lg border border-input bg-background text-foreground placeholder:text-muted-foreground focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none transition-all duration-300"
+              className="w-full pl-10 pr-4 py-3 rounded-lg border border-input bg-background text-foreground placeholder:text-muted-foreground focus:ring-2 focus:ring-primary/20 focus:border-primary focus:outline-none transition-all duration-300"
             />
           </div>
         </div>
@@ -92,7 +135,7 @@ export function ContactForm() {
             Email
           </label>
           <div className="relative">
-            <div className="absolute inset-y-0 left-3 flex items-center text-muted-foreground">
+            <div className="absolute inset-y-0 left-3 flex items-center text-foreground/70 hover:text-primary z-10 transition-colors">
               <Mail className="w-5 h-5" />
             </div>
             <input
@@ -103,7 +146,7 @@ export function ContactForm() {
               onChange={handleChange}
               required
               placeholder="Enter your email"
-              className="w-full pl-10 pr-4 py-3 rounded-lg border border-input bg-background text-foreground placeholder:text-muted-foreground focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none transition-all duration-300"
+              className="w-full pl-10 pr-4 py-3 rounded-lg border border-input bg-background text-foreground placeholder:text-muted-foreground focus:ring-2 focus:ring-primary/20 focus:border-primary focus:outline-none transition-all duration-300"
             />
           </div>
         </div>
@@ -117,7 +160,7 @@ export function ContactForm() {
             Message
           </label>
           <div className="relative">
-            <div className="absolute top-3 left-3 text-muted-foreground">
+            <div className="absolute top-3 left-3 text-foreground/70 hover:text-primary z-10 transition-colors">
               <FaRegCommentDots className="w-5 h-5" />
             </div>
             <textarea
@@ -128,7 +171,7 @@ export function ContactForm() {
               required
               placeholder="Enter your message"
               rows={4}
-              className="w-full pl-10 pr-4 py-3 rounded-lg border border-input bg-background text-foreground placeholder:text-muted-foreground focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none resize-none transition-all duration-300"
+              className="w-full pl-10 pr-4 py-3 rounded-lg border border-input bg-background text-foreground placeholder:text-muted-foreground focus:ring-2 focus:ring-primary/20 focus:border-primary focus:outline-none resize-none transition-all duration-300"
             />
           </div>
         </div>

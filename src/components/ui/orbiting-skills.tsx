@@ -569,6 +569,10 @@ export default function OrbitingSkills() {
           <img
             src="/assets/profile.jpeg"
             alt="Profile"
+            fetchPriority="high"
+            decoding="async"
+            width="192"
+            height="192"
             className="relative z-10 w-full h-full object-cover rounded-full ring-4 ring-blue-500/50 dark:ring-purple-500/50"
           />
         </div>

@@ -24,7 +24,7 @@ export function TestimonialsSection({
   return (
     <section
       id="testimonials"
-      className={cn("bg-background text-foreground", "pb-12", className)}
+      className={cn("bg-background text-foreground", "py-10", className)}
     >
       <div className="mx-auto flex max-w-container flex-col items-center gap-4 text-center sm:gap-16">
         <div className="flex flex-col items-center gap-4 px-4 sm:gap-8">

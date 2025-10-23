@@ -10,21 +10,35 @@
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="/assets/favicon.png" />
 
-    <!-- Preload critical assets for faster rendering -->
-    <link
-      rel="preload"
-      href="/assets/favicon.png"
-      as="image"
-      type="image/png"
-    />
+    <!-- DNS Prefetch for external resources -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
 
-    <!-- Google Fonts - Optimized with font-display swap and combined request -->
+    <!-- Preconnect to critical origins -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Preload critical assets -->
+    <link
+      rel="preload"
+      href="/assets/profile.jpeg"
+      as="image"
+      type="image/jpeg"
+    />
+
+    <!-- Google Fonts - Optimized with font-display swap -->
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto+Condensed:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
+      media="print"
+      onload="this.media='all'"
     />
+    <noscript>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto+Condensed:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet"
+      />
+    </noscript>
     <!-- SEO Meta Tags -->
     <meta
       name="description"

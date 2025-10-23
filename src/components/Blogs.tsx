@@ -1,4 +1,3 @@
-import React from "react";
 import { useBlogs } from "../hooks/useBlogs";
 import { BlogCard } from "./ui/BlogCard";
 import { SectionTitle } from "./ui/SectionTitle";
@@ -31,18 +30,6 @@ export function Blogs() {
               {blogs.map((blog) => (
                 <BlogCard key={blog.slug} {...blog} />
               ))}
-            </div>
-
-            {/* "See All Blogs" Button */}
-            <div className="mt-10 text-center">
-              <a
-                href="#"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block px-6 py-3 text-lg font-semibold text-white bg-blue-600 rounded-lg shadow-md hover:bg-blue-700 transition-all"
-              >
-                View More Articles →
-              </a>
             </div>
           </>
         )}

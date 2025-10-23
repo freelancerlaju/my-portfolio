@@ -108,7 +108,7 @@ export const ProfessionalConnect = () => {
       </div>
 
       {/* Main Content */}
-      <div className="relative z-10 flex flex-col items-center justify-center min-h-screen p-8">
+      <div className="relative z-10 flex flex-col items-center justify-center min-h-screen p-4 sm:p-6 md:p-8">
         {/* Header Section */}
         <div
           className={`text-center mb-16 transition-all duration-1000 ${
@@ -135,7 +135,7 @@ export const ProfessionalConnect = () => {
         </div>
 
         {/* Main Content Grid */}
-        <div className="grid lg:grid-cols-2 gap-12 max-w-7xl mx-auto w-full">
+        <div className="grid lg:grid-cols-2 gap-8 sm:gap-10 md:gap-12 max-w-7xl mx-auto w-full px-4 sm:px-6 md:px-8">
           {/* Left Side: Social Cards Grid */}
           <div className="space-y-4">
             <div className="text-center lg:text-left">
@@ -148,7 +148,7 @@ export const ProfessionalConnect = () => {
               </p>
             </div>
 
-            <div className="grid grid-cols-2 gap-4 pt-4">
+            <div className="grid grid-cols-2 gap-3 sm:gap-4 pt-4">
               {socialPlatforms.map((platform, index) => (
                 <a
                   key={platform.name}
@@ -208,7 +208,7 @@ export const ProfessionalConnect = () => {
 
           {/* Right Side: Contact Form */}
           <div className="relative md:mt-[3rem]">
-            <div className="bg-gradient-to-br from-card/50 to-card/30 backdrop-blur-xl rounded-2xl p-8 border border-border/50">
+            <div className="bg-gradient-to-br from-card/50 to-card/30 backdrop-blur-xl rounded-2xl p-6 sm:p-8 border border-border/50">
               <div className="text-center mb-6">
                 <h2 className="text-3xl font-bold text-foreground mb-4">
                   Send a Message

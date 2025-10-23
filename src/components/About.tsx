@@ -9,9 +9,8 @@ const aboutSections = [
     icon: User2,
     title: "Who I Am",
     description: [
-      "A full-stack developer having interest in software engineering.",
-      "Enjoy solving problems and building scalable applications.",
-      "Always learning new technologies to improve my skills.",
+      "Front-end developer focused on building clean, responsive UI.",
+      "Passionate about design, performance, and user experience.",
     ],
     color: "bg-blue-600",
   },
@@ -19,9 +18,8 @@ const aboutSections = [
     icon: Code2,
     title: "What I Do",
     description: [
-      "Develop high-performance web apps using modern tech stacks.",
-      "Solve algorithmic problems and optimize code efficiency.",
-      "Contribute to open-source and follow industry trends.",
+      "Develop modern web apps with React.js and Next.js.",
+      "Write clean, efficient, and scalable front-end code.",
     ],
     color: "bg-purple-600",
   },
@@ -29,9 +27,8 @@ const aboutSections = [
     icon: GoGoal,
     title: "My Goals",
     description: [
-      "Build tech products that solve real-world challenges at scale.",
-      "Advance as a full-stack developer with modern frameworks.",
-      "Grow the dev community through open-source contributions.",
+      "Create seamless user experiences that scale.",
+      "Grow as a front-end expert and contribute to open-source.",
     ],
     color: "bg-green-600",
   },
@@ -39,9 +36,8 @@ const aboutSections = [
     icon: Lightbulb,
     title: "My Philosophy",
     description: [
-      "Technology should simplify lives, not complicate them.",
-      "Great software solves problems, not just writes code.",
-      "Continuous learning keeps you ahead in tech.",
+      "Good design is invisible.",
+      "Code should be simple, readable, and purposeful.",
     ],
     color: "bg-orange-600",
   },
@@ -112,19 +108,19 @@ export function About() {
           variants={containerVariants}
         >
           <motion.p
-            className="text-base sm:text-lg text-gray-700 dark:text-gray-300 leading-relaxed"
+            className="text-base text-left sm:text-lg text-gray-700 dark:text-gray-300 leading-relaxed"
             variants={itemVariants}
           >
             👋I'm{" "}
             <span className="text-blue-600 font-bold cursor-help">Laju</span> —
-            A Passionate Web Developer and final-year Computer Science
-            Engineering student. I specialize in creating responsive,
-            user-centric web interfaces that deliver seamless digital
-            experiences. With a strong foundation in modern front-end
+            A Passionate Front-End Developer. I specialize in creating
+            responsive, user-centric web interfaces that deliver seamless
+            digital experiences. With a strong foundation in modern front-end
             technologies, my work is driven by a passion for clean design,
             performance optimization, and continuous learning. I'm committed to
             building solutions that not only look great but also create
-            meaningful user impact.
+            meaningful user impact. I'm also a self-learner and I'm always
+            learning new technologies to improve my skills.
           </motion.p>
 
           <motion.div

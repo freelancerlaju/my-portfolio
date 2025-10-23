@@ -3,11 +3,11 @@ import { ProfessionalConnect } from "./ui/get-in-touch";
 
 export function Contact() {
   return (
-    <section id="contact" className="bg-background text-foreground">
-      <div className="container mx-auto">
+    <section id="contact" className="bg-background text-foreground w-full">
+      <div className="w-full">
         {/* <SectionTitle>Get In Touch</SectionTitle> */}
 
-        <div>
+        <div className="w-full">
           {/* Integrated Professional Connect with Contact Form */}
           <ProfessionalConnect />
         </div>

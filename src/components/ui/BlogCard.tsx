@@ -19,6 +19,10 @@ export function BlogCard({ title, brief, coverImage }: BlogCardProps) {
           <img
             src={coverImage}
             alt={title}
+            loading="lazy"
+            decoding="async"
+            width="400"
+            height="192"
             className="w-full h-48 object-cover rounded-lg transform group-hover:scale-105 transition-transform duration-300 ease-in-out"
           />
         ) : (

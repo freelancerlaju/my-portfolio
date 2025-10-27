@@ -2,6 +2,7 @@ import { lazy, Suspense } from "react";
 import { NavBarDemo } from "./components/ui/navbar-demo";
 import { Hero } from "./components/Hero";
 import LoadingScreen from "./components/loading/LoadingScreen";
+import ErrorBoundary from "./components/ErrorBoundary";
 import { useLoading } from "./hooks/useLoading";
 import { ScrollToTop } from "./components/ui/ScrollToTop";
 import { ScrollProgressBar } from "./components/ui/ScrollProgressBar";
@@ -46,8 +47,10 @@ const Footer = lazy(() =>
 function App() {
   const isLoading = useLoading();
 
+  console.log("App rendering, isLoading:", isLoading);
+
   return (
-    <>
+    <ErrorBoundary>
       <LoadingScreen isLoading={isLoading} />
       <div
         className={`min-h-screen bg-background text-foreground transition-opacity duration-500 ${
@@ -56,23 +59,52 @@ function App() {
       >
         <NavBarDemo />
         <Hero />
-        <Suspense fallback={<div className="min-h-screen" />}>
-          <About />
-          <Skills />
-          <Projects />
-          <Blogs />
-          <ServicesSimple />
-          <Certifications />
-          <Education />
-          <Testimonials />
-          <Contact />
-          <Footer />
-        </Suspense>
+        <ErrorBoundary
+          fallback={
+            <div className="min-h-screen flex items-center justify-center">
+              <div className="max-w-md p-8 text-center">
+                <p className="text-red-600 dark:text-red-400 mb-4">
+                  Some sections failed to load. Please refresh the page.
+                </p>
+                <button
+                  onClick={() => window.location.reload()}
+                  className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors"
+                >
+                  Reload Page
+                </button>
+              </div>
+            </div>
+          }
+        >
+          <Suspense
+            fallback={
+              <div className="min-h-screen flex items-center justify-center">
+                <div className="text-center">
+                  <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+                  <p className="text-gray-600 dark:text-gray-400">
+                    Loading content...
+                  </p>
+                </div>
+              </div>
+            }
+          >
+            <About />
+            <Skills />
+            <Projects />
+            <Blogs />
+            <ServicesSimple />
+            <Certifications />
+            <Education />
+            <Testimonials />
+            <Contact />
+            <Footer />
+          </Suspense>
+        </ErrorBoundary>
         <ScrollToTop />
         <ScrollProgressBar />
         <Analytics />
       </div>
-    </>
+    </ErrorBoundary>
   );
 }
 

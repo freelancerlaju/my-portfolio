@@ -13,6 +13,19 @@ export default {
       maxWidth: {
         container: "1280px",
       },
+      height: {
+        320: "80rem",
+      },
+      width: {
+        140: "35rem",
+        60: "15rem",
+      },
+      translate: {
+        87.5: "21.875rem",
+      },
+      transitionDuration: {
+        2000: "2000ms",
+      },
       animation: {
         marquee: "marquee var(--duration) linear infinite",
       },

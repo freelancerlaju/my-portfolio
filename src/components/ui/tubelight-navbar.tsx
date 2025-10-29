@@ -91,11 +91,11 @@ export function NavBar({ items, className }: NavBarProps) {
   return (
     <div
       className={cn(
-        "fixed top-0 left-1/2 -translate-x-1/2 z-50 pt-2 md:pt-6 w-[95vw] sm:w-auto",
+        "fixed top-0 left-1/2 -translate-x-1/2 z-50 pt-2 md:pt-6 w-full max-w-full px-2 sm:w-auto sm:px-0",
         className
       )}
     >
-      <div className="flex items-center gap-0.5 sm:gap-2 md:gap-3 lg:gap-4 bg-background/5 border border-border backdrop-blur-lg py-1 sm:py-2 px-1 sm:px-2 rounded-full shadow-lg w-full overflow-x-auto scrollbar-hide">
+      <div className="flex items-center justify-between sm:justify-center gap-1 sm:gap-2 md:gap-3 lg:gap-4 bg-background/5 border border-border backdrop-blur-lg py-1.5 sm:py-2 px-3 sm:px-2 rounded-full shadow-lg w-full sm:w-auto overflow-x-auto scrollbar-hide">
         {items.map((item) => {
           const Icon = item.icon;
           const isActive = activeTab === item.name;
@@ -106,14 +106,14 @@ export function NavBar({ items, className }: NavBarProps) {
               href={item.url}
               onClick={() => setActiveTab(item.name)}
               className={cn(
-                "relative cursor-pointer text-xs sm:text-sm font-semibold px-1.5 sm:px-3 md:px-4 lg:px-6 py-1 sm:py-2 md:py-2.5 rounded-full transition-colors flex-shrink-0",
+                "relative cursor-pointer text-xs sm:text-sm font-semibold px-2 sm:px-3 md:px-4 lg:px-6 py-1.5 sm:py-2 md:py-2.5 rounded-full transition-colors flex-1 sm:flex-none flex items-center justify-center min-w-0",
                 "text-foreground/80 hover:text-primary",
                 isActive && "bg-muted text-primary"
               )}
             >
               <span className="hidden md:inline">{item.name}</span>
               <span className="md:hidden flex items-center justify-center">
-                <Icon size={14} strokeWidth={2.5} />
+                <Icon size={16} strokeWidth={2.5} />
               </span>
               {isActive && (
                 <motion.div
@@ -136,7 +136,7 @@ export function NavBar({ items, className }: NavBarProps) {
             </Link>
           );
         })}
-        <div className="flex-shrink-0 ml-1 sm:ml-2 md:ml-3 pl-1 sm:pl-2 md:pl-3 border-l border-border/30">
+        <div className="flex-shrink-0 ml-1 sm:ml-2 md:ml-3 pl-2 sm:pl-2 md:pl-3 sm:border-l sm:border-border/30">
           <ThemeToggle />
         </div>
       </div>

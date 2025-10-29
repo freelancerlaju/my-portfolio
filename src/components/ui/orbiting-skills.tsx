@@ -503,14 +503,14 @@ export default function OrbitingSkills() {
     const updateScale = () => {
       const width = window.innerWidth;
       if (width < 640) {
-        // Mobile - smaller scale to fit screen
-        setScale(0.6);
+        // Mobile - larger scale for full screen effect
+        setScale(0.7);
       } else if (width < 768) {
         // Small tablets
-        setScale(0.7);
+        setScale(0.75);
       } else if (width < 1024) {
         // Tablets
-        setScale(0.8);
+        setScale(0.85);
       } else {
         // Desktop
         setScale(1);
@@ -565,9 +565,9 @@ export default function OrbitingSkills() {
   }));
 
   return (
-    <main className="w-full flex items-center justify-center overflow-hidden max-w-full">
+    <main className="w-full h-full flex items-center justify-center overflow-hidden max-w-full">
       <div
-        className="relative w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px] flex items-center justify-center overflow-hidden"
+        className="relative w-full h-full min-h-[60vh] sm:min-h-[400px] md:h-[500px] lg:h-[600px] flex items-center justify-center overflow-hidden"
         style={{
           transform: "translateZ(0)",
           backfaceVisibility: "hidden",

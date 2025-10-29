@@ -90,11 +90,11 @@ export function Hero() {
         />
       </div>
 
-      <div className="container mx-auto px-4 md:px-12  pb-4 md:pt-20 md:pb-8 relative z-10 h-full w-full max-w-full overflow-x-hidden">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-12 items-center h-full">
+      <div className="container mx-auto px-0 md:px-12  pb-4 md:pt-20 md:pb-8 relative z-10 h-full w-full max-w-full overflow-x-hidden">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-0 md:gap-12 items-center h-full px-4 md:px-0">
           {/* Left Column - Content */}
           <motion.div
-            className="flex flex-col items-center md:items-start justify-center text-center md:text-left  md:space-y-6 order-2 md:order-1 w-full md:pr-4"
+            className="flex flex-col items-center md:items-start justify-center text-center md:text-left space-y-4 md:space-y-6 order-2 md:order-1 w-full md:pr-4"
             variants={containerVariants}
             initial="hidden"
             animate="visible"
@@ -146,7 +146,7 @@ export function Hero() {
 
           {/* Right Column - Orbiting Skills */}
           <motion.div
-            className="relative order-1 md:order-2 flex items-center justify-center w-full h-full min-h-[300px] md:min-h-[400px] overflow-hidden mt-10 md:mt-0"
+            className="relative order-1 md:order-2 flex items-center justify-center w-full h-auto my-4 md:my-0 mt-14 md:mt-0 md:w-full md:h-full md:min-h-[400px] overflow-hidden"
             variants={rightSlideVariants}
             initial="hidden"
             animate="visible"

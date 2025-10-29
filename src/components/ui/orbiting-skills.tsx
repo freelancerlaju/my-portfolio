@@ -503,14 +503,14 @@ export default function OrbitingSkills() {
     const updateScale = () => {
       const width = window.innerWidth;
       if (width < 640) {
-        // Mobile
-        setScale(0.75);
+        // Mobile - smaller scale to fit screen
+        setScale(0.6);
       } else if (width < 768) {
         // Small tablets
-        setScale(0.85);
+        setScale(0.7);
       } else if (width < 1024) {
         // Tablets
-        setScale(0.9);
+        setScale(0.8);
       } else {
         // Desktop
         setScale(1);
@@ -565,9 +565,9 @@ export default function OrbitingSkills() {
   }));
 
   return (
-    <main className="w-full flex items-center justify-center overflow-hidden">
+    <main className="w-full flex items-center justify-center overflow-hidden max-w-full">
       <div
-        className="relative w-full h-[400px] sm:h-[500px] md:h-[600px] lg:h-[700px] flex items-center justify-center"
+        className="relative w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px] flex items-center justify-center overflow-hidden"
         style={{
           transform: "translateZ(0)",
           backfaceVisibility: "hidden",
@@ -576,7 +576,7 @@ export default function OrbitingSkills() {
         onMouseLeave={() => setIsPaused(false)}
       >
         {/* Central Profile Image with enhanced glow */}
-        <div className="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 rounded-full flex items-center justify-center z-10 relative shadow-2xl overflow-hidden">
+        <div className="w-20 h-20 sm:w-28 sm:h-28 md:w-36 md:h-36 lg:w-44 lg:h-44 rounded-full flex items-center justify-center z-10 relative shadow-2xl overflow-hidden">
           <div className="absolute inset-0 rounded-full bg-cyan-500/30 blur-xl animate-pulse"></div>
           <div
             className="absolute inset-0 rounded-full bg-purple-500/20 blur-2xl animate-pulse"

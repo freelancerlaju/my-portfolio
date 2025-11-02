@@ -1,4 +1,3 @@
-"use client";
 import React, {
   useEffect,
   useRef,
@@ -140,8 +139,6 @@ export const CircularCertifications = ({
   function getImageStyle(index: number): React.CSSProperties {
     const gap = calculateGap(containerWidth);
     const maxStickUp = gap * 0.8;
-    const offset =
-      (index - activeIndex + certificationsLength) % certificationsLength;
     const isActive = index === activeIndex;
     const isLeft =
       (activeIndex - 1 + certificationsLength) % certificationsLength === index;
@@ -191,7 +188,7 @@ export const CircularCertifications = ({
 
   return (
     <div className="certification-container">
-      <style jsx global>{`
+      <style>{`
         :root {
           --color-title: #1e293b;
           --color-issuer: #64748b;
@@ -314,7 +311,7 @@ export const CircularCertifications = ({
           </div>
         </div>
       </div>
-      <style jsx>{`
+      <style>{`
         .certification-container {
           width: 100%;
           max-width: 56rem;

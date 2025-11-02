@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { User, Mail } from "lucide-react";
 import { LuMessageSquareShare } from "react-icons/lu";
 import { FaRegCommentDots } from "react-icons/fa";
+import emailjs from "@emailjs/browser";
 import { Toast } from "./toast";
 
 export function ContactForm() {
@@ -32,63 +33,34 @@ export function ContactForm() {
     setErrorMessage("");
 
     try {
-      const emailjsServiceId = import.meta.env.VITE_EMAILJS_SERVICE_ID as
-        | string
-        | undefined;
-      const emailjsTemplateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID as
-        | string
-        | undefined;
-      const emailjsPublicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY as
-        | string
-        | undefined;
+      const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+      const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+      const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
-      let response: Response;
-
-      if (emailjsServiceId && emailjsTemplateId && emailjsPublicKey) {
-        // Send via EmailJS REST API
-        const emailjsApiUrl =
-          (import.meta.env.VITE_EMAILJS_API_URL as string | undefined) ||
-          "https://api.emailjs.com/api/v1.0/email/send";
-
-        const payload = {
-          service_id: emailjsServiceId,
-          template_id: emailjsTemplateId,
-          public_key: emailjsPublicKey,
-          template_params: {
-            from_name: formData.name,
-            from_email: formData.email,
-            message: formData.message,
-          },
-        };
-
-        response = await fetch(emailjsApiUrl, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload),
-        });
-      } else {
-        // Fallback to Formspree
-        response = await fetch("https://formspree.io/f/mvggvyar", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(formData),
-        });
+      if (!serviceId || !templateId || !publicKey) {
+        throw new Error(
+          "EmailJS configuration is missing. Please check your environment variables."
+        );
       }
 
-      if (response.ok) {
-        setStatus("success");
-        setFormData({ name: "", email: "", message: "" }); // Reset the form
-        setShowToast(true); // Show toast notification
-      } else {
-        let message = "Something went wrong. Please try again.";
-        try {
-          const errorData = await response.json();
-          message = errorData.error || errorData.message || message;
-        } catch {}
-        setErrorMessage(message);
-        setStatus("error");
-      }
+      // Initialize EmailJS with public key
+      emailjs.init(publicKey);
+
+      // Send email using EmailJS
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        message: formData.message,
+        to_email: "fa.freelancerlaju@gmail.com", // Recipient email
+      };
+
+      await emailjs.send(serviceId, templateId, templateParams);
+
+      setStatus("success");
+      setFormData({ name: "", email: "", message: "" }); // Reset the form
+      setShowToast(true); // Show toast notification
     } catch (err) {
+      console.error("EmailJS Error:", err);
       setErrorMessage(
         err instanceof Error
           ? err.message

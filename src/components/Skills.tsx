@@ -86,14 +86,14 @@ const skills = [
 ];
 
 const skillLevels = [
-  { name: "HTML", percentage: 95, color: "#e34f26" },
-  { name: "CSS", percentage: 90, color: "#1572b6" },
-  { name: "JavaScript", percentage: 88, color: "#ffd600" },
-  { name: "TypeScript", percentage: 85, color: "#3178c6" },
-  { name: "React", percentage: 90, color: "#61dafb" },
-  { name: "Next.js", percentage: 80, color: "#000000" },
-  { name: "TailwindCSS", percentage: 92, color: "#38bdf8" },
-  { name: "Redux", percentage: 75, color: "#764abc" },
+  { name: "HTML", percentage: 95, color: "#e34f26" }, // HTML5 orange-red
+  { name: "CSS", percentage: 85, color: "#1572b6" }, // CSS3 blue
+  { name: "JavaScript", percentage: 80, color: "#ffd600" }, // JavaScript yellow
+  { name: "TypeScript", percentage: 75, color: "#3178c6" }, // TypeScript blue
+  { name: "TailwindCSS", percentage: 90, color: "#38bdf8" }, // Tailwind cyan
+  { name: "React", percentage: 85, color: "#61dafb" }, // React cyan
+  { name: "Next.js", percentage: 75, color: "#000000" }, // Next.js black
+  { name: "Redux", percentage: 70, color: "#764abc" }, // Redux purple
 ];
 
 export function Skills() {
@@ -178,7 +178,7 @@ export function Skills() {
               </div>
             </motion.div>
 
-            {/* Right side - Skills Progress Bar */}
+            {/* Right side - Horizontal Progress Bars */}
             <motion.div
               className="w-full min-h-[300px] sm:min-h-[400px] lg:min-h-[450px]"
               variants={rightCardVariants}

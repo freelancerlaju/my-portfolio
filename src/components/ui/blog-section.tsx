@@ -1,7 +1,16 @@
 import { useState } from "react";
-import { LazyImage } from "./lazy-image";
 import { BlogModal } from "./blog-modal";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Clock, User } from "lucide-react";
+import { motion } from "framer-motion";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "./card";
+import { Button } from "./button";
 
 import { AnimatedText } from "@/components/ui/animated-underline-text-one";
 
@@ -243,59 +252,95 @@ export function BlogSection() {
   };
 
   return (
-    <div className="container mx-auto px-8">
-      <div className="text-center">
+    <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="text-center mb-8 sm:mb-12 md:mb-16">
         <AnimatedText
           text="Latest Blogs"
-          textClassName="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent"
+          textClassName="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-extrabold bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent"
           underlineClassName="text-blue-500"
           underlinePath="M 0,10 Q 100,0 200,10 Q 300,20 400,10"
           underlineHoverPath="M 0,10 Q 100,20 200,10 Q 300,0 400,10"
           underlineDuration={2.0}
         />
+        <p className="mt-3 sm:mt-4 text-gray-600 dark:text-gray-400 text-xs sm:text-sm md:text-base max-w-2xl mx-auto px-2">
+          Explore the latest insights, tutorials, and trends in web development
+        </p>
       </div>
-      <div className="max-w-6xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-8 py-10">
-        {blogs.map((blog) => (
-          <div
+
+      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 md:gap-6 lg:gap-7 pb-8 sm:pb-12">
+        {blogs.map((blog, index) => (
+          <motion.div
             key={blog.title}
-            className="group flex flex-col gap-2 rounded-lg p-3 duration-300 bg-card border border-gray-300 dark:border-gray-700 shadow-md hover:shadow-xl hover:border-gray-400 dark:hover:border-gray-600 hover:-translate-y-1 transition-all"
+            whileHover={{ y: -8 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+            className="h-full"
           >
-            <div
+            <Card 
               onClick={() => handleBlogClick(blog)}
-              className="cursor-pointer"
+              className="group relative overflow-hidden transition-all duration-500 focus-visible:outline-none focus-visible:ring-0 bg-white/90 dark:bg-gray-800/90 backdrop-blur-xl border border-gray-200/60 dark:border-gray-700/60 rounded-lg sm:rounded-xl h-full flex flex-col cursor-pointer active:scale-[0.98]"
             >
-              <LazyImage
-                src={blog.image}
-                fallback="https://placehold.co/640x360?text=fallback-image"
-                inView={true}
-                alt={blog.title}
-                ratio={16 / 9}
-                className="transition-all duration-500 group-hover:scale-105"
-              />
-            </div>
-            <div className="space-y-2 px-2 pb-2">
-              <div className="text-muted-foreground flex items-center gap-2 text-[11px] sm:text-xs">
-                <p>by {blog.author}</p>
-                <div className="bg-muted-foreground size-1 rounded-full" />
-                <p>{blog.createdAt}</p>
-                <div className="bg-muted-foreground size-1 rounded-full" />
-                <p>{blog.readTime}</p>
+              {/* Image Container */}
+              <div className="relative overflow-hidden p-2.5 sm:p-3 pb-0 rounded-t-lg sm:rounded-t-xl">
+                <div className="relative aspect-video rounded-md sm:rounded-lg overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-700 dark:to-gray-800">
+                  <img
+                    src={blog.image}
+                    alt={blog.title}
+                    loading="lazy"
+                    decoding="async"
+                    width="400"
+                    height="300"
+                    className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 ease-out"
+                  />
+                </div>
               </div>
-              <h2 className="line-clamp-2 text-lg leading-5 font-semibold tracking-tight">
-                {blog.title}
-              </h2>
-              <p className="text-muted-foreground line-clamp-3 text-sm">
-                {blog.description}
-              </p>
-              <button
-                onClick={() => handleBlogClick(blog)}
-                className="flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium text-sm transition-colors group/button mt-2"
-              >
-                See more
-                <ArrowRight className="w-4 h-4 transition-transform group-hover/button:translate-x-1" />
-              </button>
-            </div>
-          </div>
+
+              {/* Content */}
+              <CardHeader className="pb-1.5 sm:pb-2 flex-1 flex flex-col p-3 sm:p-4">
+                <div className="flex items-start justify-between gap-2 mb-1">
+                  <CardTitle className="text-sm sm:text-base md:text-lg font-bold text-gray-900 dark:text-gray-100 leading-snug group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300 line-clamp-2">
+                    {blog.title}
+                  </CardTitle>
+                </div>
+              </CardHeader>
+
+              <CardContent className="pb-2 sm:pb-3 flex-1 px-3 sm:px-4">
+                <CardDescription className="text-[11px] sm:text-xs md:text-sm text-gray-600 dark:text-gray-400 line-clamp-2 sm:line-clamp-3 leading-relaxed">
+                  {blog.description}
+                </CardDescription>
+              </CardContent>
+
+              {/* Footer with Meta Info */}
+              <CardFooter className="pt-0 pb-3 sm:pb-4 px-3 sm:px-4">
+                <div className="flex flex-wrap gap-1.5 sm:gap-2 w-full">
+                  <div className="flex items-center gap-1 px-1.5 sm:px-2 py-1 sm:py-1.5 rounded-md sm:rounded-lg bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-700 dark:to-gray-800 border border-gray-200/50 dark:border-gray-600/50 shadow-sm">
+                    <User className="w-3 h-3 text-gray-600 dark:text-gray-400" />
+                    <span className="text-[9px] sm:text-[10px] font-medium text-gray-600 dark:text-gray-400 truncate max-w-[60px] sm:max-w-none">{blog.author}</span>
+                  </div>
+                  <div className="flex items-center gap-1 px-1.5 sm:px-2 py-1 sm:py-1.5 rounded-md sm:rounded-lg bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-700 dark:to-gray-800 border border-gray-200/50 dark:border-gray-600/50 shadow-sm">
+                    <Clock className="w-3 h-3 text-gray-600 dark:text-gray-400" />
+                    <span className="text-[9px] sm:text-[10px] font-medium text-gray-600 dark:text-gray-400">{blog.readTime}</span>
+                  </div>
+                  <div className="flex items-center gap-1 px-1.5 sm:px-2 py-1 sm:py-1.5 rounded-md sm:rounded-lg bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-700 dark:to-gray-800 border border-gray-200/50 dark:border-gray-600/50 shadow-sm">
+                    <time dateTime={blog.createdAt} className="text-[9px] sm:text-[10px] font-medium text-gray-600 dark:text-gray-400">
+                      {new Date(blog.createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
+                    </time>
+                  </div>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="ml-auto text-[10px] sm:text-xs md:text-sm text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-all duration-200 px-1.5 sm:px-2 h-6 sm:h-7"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleBlogClick(blog);
+                    }}
+                  >
+                    Read More
+                    <ArrowRight className="w-3 h-3 ml-0.5" />
+                  </Button>
+                </div>
+              </CardFooter>
+            </Card>
+          </motion.div>
         ))}
       </div>
 

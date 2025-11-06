@@ -127,7 +127,7 @@ export function Hero() {
             </motion.div>
 
             <motion.div variants={itemVariants}>
-              <p className="text-lg text-gray-700 dark:text-gray-300 font-[Roboto Condensed] font-light">
+              <p className="text-left text-lg text-gray-700 dark:text-gray-300 font-[Roboto Condensed] font-light">
                 I'm a front-end developer from bangladesh. I love learning how
                 to build fast, accessible and scalable web applications. I
                 always keep an eye on the JavaScript ecosystem for what comes

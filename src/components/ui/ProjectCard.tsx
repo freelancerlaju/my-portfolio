@@ -2,6 +2,22 @@ import { memo } from "react";
 import { SiGithub } from "react-icons/si";
 import { FaGlobe } from "react-icons/fa";
 import { IconType } from "react-icons";
+import { motion } from "framer-motion";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "./card";
+import { Button } from "./button";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "./tooltip";
 
 interface TechStackItem {
   icon: IconType;
@@ -15,6 +31,7 @@ interface ProjectCardProps {
   image: string;
   link?: string;
   github?: string;
+  category?: string;
   techStack: TechStackItem[];
 }
 
@@ -24,14 +41,19 @@ export const ProjectCard = memo(function ProjectCard({
   image,
   link,
   github,
+  category,
   techStack,
 }: ProjectCardProps) {
   return (
-    <div className="group relative">
-      <div className="relative bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-400 rounded-2xl shadow-lg overflow-hidden transition duration-300 hover:shadow-blue-500/10">
-        {/* Image */}
-        <div className="relative overflow-hidden p-4 pb-0">
-          <a href={link} target="_blank" rel="noopener noreferrer">
+    <motion.div
+      whileHover={{ y: -8 }}
+      transition={{ duration: 0.3, ease: "easeOut" }}
+      className="h-full"
+    >
+      <Card className="group relative overflow-hidden transition-all duration-500 focus-visible:outline-none focus-visible:ring-0 bg-white/90 dark:bg-gray-800/90 backdrop-blur-xl border border-gray-200/60 dark:border-gray-700/60 rounded-2xl h-full flex flex-col">
+        {/* Image Container */}
+        <div className="relative overflow-hidden p-5 pb-0 rounded-t-2xl">
+          <div className="relative aspect-video rounded-xl overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-700 dark:to-gray-800">
             <img
               src={image}
               alt={`Screenshot of ${title}`}
@@ -39,69 +61,116 @@ export const ProjectCard = memo(function ProjectCard({
               decoding="async"
               width="400"
               height="300"
-              className="w-full h-full object-cover rounded-lg transform group-hover:scale-105 transition-transform duration-300 ease-in-out"
+              className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 ease-out"
             />
-          </a>
+
+            {/* Category Badge - Top Right */}
+            {category && (
+              <div className="absolute top-3 right-3">
+                <span className="inline-block px-2 py-0.5 text-[10px] font-semibold rounded-full bg-white/90 dark:bg-gray-900/90 backdrop-blur-md text-blue-700 dark:text-blue-300 border border-blue-200/50 dark:border-blue-800/50 shadow-md">
+                  {category}
+                </span>
+              </div>
+            )}
+          </div>
         </div>
 
         {/* Content */}
-        <div className="p-6">
-          {/* Title + Icons */}
-          <div className="flex items-center justify-between mb-2">
-            <h3 className="text-xl font-semibold text-gray-800 dark:text-white">
+        <CardHeader className="pb-3 flex-1 flex flex-col">
+          <div className="flex items-start justify-between gap-3 mb-2">
+            <CardTitle className="text-xl font-bold text-gray-900 dark:text-gray-100 leading-tight group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">
               {title}
-            </h3>
-            <div className="flex gap-3">
-              {github && (
-                <a
-                  href={github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-2 rounded-full text-gray-600 dark:text-gray-300 hover:bg-blue-600 hover:text-white transition-colors duration-300"
-                >
-                  <SiGithub className="w-6 h-6" />
-                </a>
+            </CardTitle>
+            <div className="flex gap-1 flex-shrink-0 pt-1">
+              {github && github !== "#" && (
+                <TooltipProvider>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        className="h-9 w-9 rounded-full hover:bg-blue-100 dark:hover:bg-blue-900/30 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-200"
+                        asChild
+                      >
+                        <a
+                          href={github}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label="View on GitHub"
+                        >
+                          <SiGithub className="h-5 w-5" />
+                        </a>
+                      </Button>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>View on GitHub</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
               )}
-              {link && (
-                <a
-                  href={link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-2 rounded-full text-gray-600 dark:text-gray-300 hover:bg-blue-600 hover:text-white transition-colors duration-300"
-                >
-                  <FaGlobe className="w-6 h-6" />
-                </a>
+              {link && link !== "#" && (
+                <TooltipProvider>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        className="h-9 w-9 rounded-full hover:bg-blue-100 dark:hover:bg-blue-900/30 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-200"
+                        asChild
+                      >
+                        <a
+                          href={link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label="Visit website"
+                        >
+                          <FaGlobe className="h-5 w-5" />
+                        </a>
+                      </Button>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>Visit website</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
               )}
             </div>
           </div>
+        </CardHeader>
 
-          {/* Description */}
-          <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-4">
+        <CardContent className="pb-4 flex-1">
+          <CardDescription className="text-sm text-gray-600 dark:text-gray-400 line-clamp-3 leading-relaxed">
             {description}
-          </p>
+          </CardDescription>
+        </CardContent>
 
-          {/* Tech Stack Icons with Tooltip */}
-          <div className="flex flex-wrap gap-3 mt-4">
+        {/* Tech Stack Icons */}
+        <CardFooter className="pt-0 pb-5">
+          <div className="flex flex-wrap gap-2 w-full">
             {techStack.map((item, index) => {
               const Icon = item.icon;
               return (
-                <div key={index} className="relative">
-                  <div className="peer p-2 rounded-lg bg-gray-200 dark:bg-gray-800">
-                    <Icon className="w-6 h-6" color={item.color} />
-                  </div>
-                  {/* Tooltip */}
-                  <div
-                    className="absolute -top-8 left-1/2 -translate-x-1/2 bg-gray-700 text-white text-xs rounded px-2 py-1 
-                        opacity-0 peer-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap z-10"
-                  >
-                    {item.name}
-                  </div>
-                </div>
+                <TooltipProvider key={index}>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <motion.div
+                        whileHover={{ scale: 1.1, y: -2 }}
+                        whileTap={{ scale: 0.95 }}
+                        className="p-2.5 rounded-xl bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-700 dark:to-gray-800 hover:from-blue-50 hover:to-purple-50 dark:hover:from-blue-900/30 dark:hover:to-purple-900/30 transition-all duration-200 cursor-default border border-gray-200/50 dark:border-gray-600/50 hover:border-blue-300/50 dark:hover:border-blue-600/50 shadow-sm hover:shadow-md"
+                      >
+                        <Icon className="w-5 h-5" color={item.color} />
+                      </motion.div>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p className="font-medium">{item.name}</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
               );
             })}
           </div>
-        </div>
-      </div>
-    </div>
+        </CardFooter>
+      </Card>
+    </motion.div>
   );
 });

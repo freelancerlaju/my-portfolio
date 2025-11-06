@@ -7,8 +7,17 @@ export function Blogs() {
   }, []);
 
   return (
-    <section id="blogs" className="py-10 bg-gray-50 dark:bg-gray-800 relative">
-      <BlogSection />
+    <section id="blogs" className="py-12 sm:py-16 lg:py-20 relative overflow-hidden">
+      {/* Background Gradient */}
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-purple-50 to-indigo-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900" />
+      
+      {/* Grid Pattern */}
+      <div className="absolute inset-0 bg-grid-pattern opacity-[0.03] dark:opacity-[0.05]" />
+      
+      {/* Content */}
+      <div className="relative z-10">
+        <BlogSection />
+      </div>
     </section>
   );
 }

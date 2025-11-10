@@ -256,7 +256,7 @@ export function BlogSection() {
       <div className="text-center mb-8 sm:mb-12 md:mb-16">
         <AnimatedText
           text="Latest Blogs"
-          textClassName="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-extrabold bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent"
+          textClassName="text-2xl md:text-4xl font-extrabold text-blue-600"
           underlineClassName="text-blue-500"
           underlinePath="M 0,10 Q 100,0 200,10 Q 300,20 400,10"
           underlineHoverPath="M 0,10 Q 100,20 200,10 Q 300,0 400,10"
@@ -267,17 +267,12 @@ export function BlogSection() {
         </p>
       </div>
 
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 md:gap-6 lg:gap-7 pb-8 sm:pb-12">
-        {blogs.map((blog, index) => (
-          <motion.div
-            key={blog.title}
-            whileHover={{ y: -8 }}
-            transition={{ duration: 0.3, ease: "easeOut" }}
-            className="h-full"
-          >
-            <Card 
+      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 md:gap-6 lg:gap-7 pb-8 sm:pb-12">
+        {blogs.map((blog) => (
+          <motion.div key={blog.title} className="h-full">
+            <Card
               onClick={() => handleBlogClick(blog)}
-              className="group relative overflow-hidden transition-all duration-500 focus-visible:outline-none focus-visible:ring-0 bg-white/90 dark:bg-gray-800/90 backdrop-blur-xl border border-gray-200/60 dark:border-gray-700/60 rounded-lg sm:rounded-xl h-full flex flex-col cursor-pointer active:scale-[0.98]"
+              className="group relative overflow-hidden transition-all duration-300 focus-visible:outline-none focus-visible:ring-0 bg-white/90 dark:bg-gray-800/90 backdrop-blur-xl border border-gray-200/60 dark:border-gray-700/60 rounded-lg sm:rounded-xl h-full flex flex-col cursor-pointer hover:shadow-lg dark:hover:shadow-xl hover:shadow-gray-300/50 dark:hover:shadow-gray-900/50 active:scale-[0.98]"
             >
               {/* Image Container */}
               <div className="relative overflow-hidden p-2.5 sm:p-3 pb-0 rounded-t-lg sm:rounded-t-xl">
@@ -289,7 +284,7 @@ export function BlogSection() {
                     decoding="async"
                     width="400"
                     height="300"
-                    className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 ease-out"
+                    className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-300 ease-out"
                   />
                 </div>
               </div>
@@ -314,15 +309,25 @@ export function BlogSection() {
                 <div className="flex flex-wrap gap-1.5 sm:gap-2 w-full">
                   <div className="flex items-center gap-1 px-1.5 sm:px-2 py-1 sm:py-1.5 rounded-md sm:rounded-lg bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-700 dark:to-gray-800 border border-gray-200/50 dark:border-gray-600/50 shadow-sm">
                     <User className="w-3 h-3 text-gray-600 dark:text-gray-400" />
-                    <span className="text-[9px] sm:text-[10px] font-medium text-gray-600 dark:text-gray-400 truncate max-w-[60px] sm:max-w-none">{blog.author}</span>
+                    <span className="text-[9px] sm:text-[10px] font-medium text-gray-600 dark:text-gray-400 truncate max-w-[60px] sm:max-w-none">
+                      {blog.author}
+                    </span>
                   </div>
                   <div className="flex items-center gap-1 px-1.5 sm:px-2 py-1 sm:py-1.5 rounded-md sm:rounded-lg bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-700 dark:to-gray-800 border border-gray-200/50 dark:border-gray-600/50 shadow-sm">
                     <Clock className="w-3 h-3 text-gray-600 dark:text-gray-400" />
-                    <span className="text-[9px] sm:text-[10px] font-medium text-gray-600 dark:text-gray-400">{blog.readTime}</span>
+                    <span className="text-[9px] sm:text-[10px] font-medium text-gray-600 dark:text-gray-400">
+                      {blog.readTime}
+                    </span>
                   </div>
                   <div className="flex items-center gap-1 px-1.5 sm:px-2 py-1 sm:py-1.5 rounded-md sm:rounded-lg bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-700 dark:to-gray-800 border border-gray-200/50 dark:border-gray-600/50 shadow-sm">
-                    <time dateTime={blog.createdAt} className="text-[9px] sm:text-[10px] font-medium text-gray-600 dark:text-gray-400">
-                      {new Date(blog.createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
+                    <time
+                      dateTime={blog.createdAt}
+                      className="text-[9px] sm:text-[10px] font-medium text-gray-600 dark:text-gray-400"
+                    >
+                      {new Date(blog.createdAt).toLocaleDateString("en-US", {
+                        month: "short",
+                        day: "numeric",
+                      })}
                     </time>
                   </div>
                   <Button

@@ -44,24 +44,9 @@ const techStacks = {
 export type ProjectCategory =
   | "All"
   | "Web Design"
-  | "Web Development"
   | "Landing Page"
-  | "Mobile Apps"
-  | "Web Application"
-  | "Website Redesign"
-  | "E-commerce"
   | "SaaS Platform"
-  | "Dashboard/Analytics"
-  | "Corporate/Business"
-  | "Healthcare"
-  | "Education"
-  | "Restaurant/Food"
-  | "Blog/Content"
-  | "Portfolio"
-  | "Social Media"
-  | "Real Estate"
-  | "Entertainment"
-  | "Finance/Banking";
+  | "Web Application";
 
 // Define projects data with categories
 const projects = [
@@ -105,7 +90,7 @@ const projects = [
     image: "/assets/portfolioProject.png",
     link: "https://www.freelancerlaju.vercel.app",
     github: "https://github.com/freelancerlaju/",
-    category: "Portfolio" as ProjectCategory,
+    category: "Web Application" as ProjectCategory,
     techStack: [
       techStacks.next,
       techStacks.react,
@@ -139,7 +124,7 @@ const projects = [
     image: "/assets/project3.png",
     link: "https://goid-food-website.vercel.app/",
     github: "https://github.com/freelancerlaju/goid-food-website",
-    category: "Restaurant/Food" as ProjectCategory,
+    category: "Web Application" as ProjectCategory,
     techStack: [
       techStacks.react,
       techStacks.typescript,
@@ -156,7 +141,7 @@ const projects = [
     image: "/assets/project4.png",
     link: "https://mico-hospital-webpage.vercel.app/",
     github: "https://github.com/freelancerlaju/mico-hospital-webpage",
-    category: "Healthcare" as ProjectCategory,
+    category: "Web Application" as ProjectCategory,
     techStack: [
       techStacks.react,
       techStacks.typescript,
@@ -173,7 +158,7 @@ const projects = [
     image: "/assets/project5.png",
     link: "https://kider-landing-page.vercel.app/",
     github: "https://github.com/freelancerlaju/kider-landing-page",
-    category: "Education" as ProjectCategory,
+    category: "Landing Page" as ProjectCategory,
     techStack: [
       techStacks.react,
       techStacks.typescript,
@@ -194,8 +179,6 @@ const projects = [
     techStack: [
       techStacks.next,
       techStacks.typescript,
-      techStacks.tailwind,
-      techStacks.mongodb,
       techStacks.prisma,
       techStacks.shadcn,
     ],
@@ -208,7 +191,52 @@ const projects = [
     image: "/assets/project8.png",
     link: "https://sine-mkt.vercel.app/",
     github: "https://github.com/freelancerlaju/sine-mkt",
-    category: "E-commerce" as ProjectCategory,
+    category: "Web Application" as ProjectCategory,
+    techStack: [
+      techStacks.react,
+      techStacks.typescript,
+      techStacks.tailwind,
+      techStacks.stripe,
+    ],
+  },
+  {
+    title: "Sine MKT",
+    description:
+      "Sine MKT is a modern, responsive e-commerce website template designed for furniture retailers. it offers user-friendly layout suitable for showcasing a variety of home furnishings.",
+    image: "/assets/project8.png",
+    link: "https://sine-mkt.vercel.app/",
+    github: "https://github.com/freelancerlaju/sine-mkt",
+    category: "Web Application" as ProjectCategory,
+    techStack: [
+      techStacks.react,
+      techStacks.typescript,
+      techStacks.tailwind,
+      techStacks.stripe,
+    ],
+  },
+  {
+    title: "Sine MKT",
+    description:
+      "Sine MKT is a modern, responsive e-commerce website template designed for furniture retailers. it offers user-friendly layout suitable for showcasing a variety of home furnishings.",
+    image: "/assets/project8.png",
+    link: "https://sine-mkt.vercel.app/",
+    github: "https://github.com/freelancerlaju/sine-mkt",
+    category: "Web Application" as ProjectCategory,
+    techStack: [
+      techStacks.react,
+      techStacks.typescript,
+      techStacks.tailwind,
+      techStacks.stripe,
+    ],
+  },
+  {
+    title: "Sine MKT",
+    description:
+      "Sine MKT is a modern, responsive e-commerce website template designed for furniture retailers. it offers user-friendly layout suitable for showcasing a variety of home furnishings.",
+    image: "/assets/project8.png",
+    link: "https://sine-mkt.vercel.app/",
+    github: "https://github.com/freelancerlaju/sine-mkt",
+    category: "Web Application" as ProjectCategory,
     techStack: [
       techStacks.react,
       techStacks.typescript,
@@ -221,24 +249,9 @@ const projects = [
 const categories: ProjectCategory[] = [
   "All",
   "Web Design",
-  "Web Development",
   "Landing Page",
-  "Mobile Apps",
-  "Web Application",
-  "Website Redesign",
-  "E-commerce",
   "SaaS Platform",
-  "Dashboard/Analytics",
-  "Corporate/Business",
-  "Healthcare",
-  "Education",
-  "Restaurant/Food",
-  "Blog/Content",
-  "Portfolio",
-  "Social Media",
-  "Real Estate",
-  "Entertainment",
-  "Finance/Banking",
+  "Web Application",
 ];
 
 export function Projects() {
@@ -364,35 +377,66 @@ export function Projects() {
 
         {/* Enhanced Filter Tabs and Search Bar */}
         <div className="max-w-7xl mx-auto mt-16 mb-12">
-          {/* Modern Search Bar */}
+          {/* Modern Professional Search Bar */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="max-w-2xl mx-auto mb-8"
+            className="max-w-3xl mx-auto mb-8"
           >
             <div className="relative group">
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 rounded-2xl blur-lg opacity-20 group-hover:opacity-30 transition-opacity duration-300" />
-              <div className="relative bg-white/80 dark:bg-gray-800/80 backdrop-blur-xl rounded-2xl border border-gray-200/50 dark:border-gray-700/50 shadow-xl">
-                <div className="flex items-center px-6 py-4">
-                  <Search className="w-5 h-5 text-gray-400 dark:text-gray-500 mr-3 flex-shrink-0" />
+              {/* Glassmorphism Container */}
+              <div className="relative bg-white/95 dark:bg-gray-900/95 backdrop-blur-2xl rounded-2xl border border-white/20 dark:border-gray-700/30 shadow-[0_2px_4px_rgba(0,0,0,0.08)] dark:shadow-[0_2px_4px_rgba(0,0,0,0.2)] group-hover:shadow-[0_4px_6px_rgba(0,0,0,0.12)] dark:group-hover:shadow-[0_4px_6px_rgba(0,0,0,0.25)] transition-all duration-300 overflow-hidden">
+                <div className="relative flex items-center px-5 py-4 md:px-6 md:py-5">
+                  {/* Search Icon with Animation */}
+                  <div className="relative flex-shrink-0 mr-4">
+                    <div className="absolute inset-0 bg-blue-500/20 dark:bg-blue-400/20 rounded-xl blur-md group-hover:blur-lg transition-all duration-300 opacity-0 group-hover:opacity-100" />
+                    <div className="relative p-2.5 rounded-xl bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 border border-blue-200/50 dark:border-blue-700/30 group-hover:border-blue-400/70 dark:group-hover:border-blue-500/50 transition-all duration-300">
+                      <Search className="w-5 h-5 text-blue-600 dark:text-blue-400 group-hover:scale-110 transition-transform duration-300" />
+                    </div>
+                  </div>
+
+                  {/* Input Field */}
                   <Input
                     type="text"
-                    placeholder="Search by project name, description, or category..."
+                    placeholder="Search projects by name, description, or category..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="flex-1 bg-transparent border-0 focus-visible:ring-0 focus-visible:ring-offset-0 text-gray-900 dark:text-gray-100 placeholder:text-gray-400 dark:placeholder:text-gray-500 text-base"
+                    className="flex-1 bg-transparent border-0 focus-visible:ring-0 focus-visible:ring-offset-0 text-gray-900 dark:text-gray-100 placeholder:text-gray-400 dark:placeholder:text-gray-400 text-sm md:text-base font-medium placeholder:font-normal"
                   />
-                  {searchQuery && (
-                    <button
-                      onClick={() => setSearchQuery("")}
-                      className="ml-2 p-1 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
-                      aria-label="Clear search"
-                    >
-                      <X className="w-4 h-4 text-gray-400 dark:text-gray-500" />
-                    </button>
-                  )}
+
+                  {/* Clear Button with Animation */}
+                  <AnimatePresence>
+                    {searchQuery && (
+                      <motion.button
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.8 }}
+                        transition={{ duration: 0.2 }}
+                        onClick={() => setSearchQuery("")}
+                        className="ml-3 p-2 rounded-xl bg-gray-100 dark:bg-gray-800 hover:bg-red-100 dark:hover:bg-red-900/30 border border-gray-200 dark:border-gray-700 hover:border-red-300 dark:hover:border-red-700 transition-all duration-300 group/clear"
+                        aria-label="Clear search"
+                      >
+                        <X className="w-4 h-4 text-gray-500 dark:text-gray-400 group-hover/clear:text-red-600 dark:group-hover/clear:text-red-400 transition-colors duration-300" />
+                      </motion.button>
+                    )}
+                  </AnimatePresence>
+
+                  {/* Search Indicator */}
+                  <AnimatePresence>
+                    {searchQuery && (
+                      <motion.div
+                        initial={{ opacity: 0, x: -10 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        exit={{ opacity: 0, x: -10 }}
+                        transition={{ duration: 0.2 }}
+                        className="ml-3 px-3 py-1.5 rounded-lg bg-gradient-to-r from-blue-500 to-purple-500 text-white text-xs font-semibold shadow-lg shadow-blue-500/30"
+                      >
+                        {filteredProjects.length}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </div>
               </div>
             </div>
@@ -404,9 +448,9 @@ export function Projects() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="w-full overflow-x-auto mb-8 px-2 scrollbar-hide"
+            className="w-full overflow-x-auto mb-6 sm:mb-8 px-1 sm:px-2 scrollbar-hide"
           >
-            <div className="flex items-center justify-center gap-2 md:gap-3 min-w-max md:flex-wrap md:justify-center">
+            <div className="flex items-center justify-start sm:justify-center gap-1.5 sm:gap-2 md:gap-3 min-w-max sm:flex-wrap pb-1">
               {categories.map((category, index) => (
                 <motion.div
                   key={category}
@@ -421,17 +465,17 @@ export function Projects() {
                       selectedCategory === category ? "default" : "ghost"
                     }
                     className={`
-                      px-5 md:px-6 py-2.5 md:py-3 rounded-full text-xs md:text-sm font-semibold transition-all duration-300 whitespace-nowrap flex-shrink-0 relative overflow-hidden group
+                      px-3 sm:px-4 md:px-6 py-2 sm:py-2.5 md:py-3 rounded-full text-[11px] sm:text-xs md:text-sm font-semibold transition-all duration-300 whitespace-nowrap flex-shrink-0 relative overflow-hidden group touch-manipulation
                       ${
                         selectedCategory === category
-                          ? "bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600 text-white shadow-lg shadow-blue-500/40 dark:shadow-blue-500/20 scale-105"
-                          : "bg-white/70 dark:bg-gray-800/70 backdrop-blur-md text-gray-700 dark:text-gray-300 hover:bg-white dark:hover:bg-gray-800 border border-gray-200/50 dark:border-gray-700/50 hover:border-blue-300 dark:hover:border-blue-600 hover:scale-105 hover:shadow-md"
+                          ? "bg-gradient-to-r from-indigo-600 via-blue-600 to-purple-600 text-white shadow-lg shadow-indigo-500/40 dark:shadow-indigo-500/30 scale-100 sm:scale-105"
+                          : "bg-white/70 dark:bg-gray-800/70 backdrop-blur-md text-gray-700 dark:text-gray-300 hover:bg-white dark:hover:bg-gray-800 border border-gray-200/50 dark:border-gray-700/50 hover:border-indigo-300 dark:hover:border-indigo-600 hover:scale-100 sm:hover:scale-105 hover:shadow-md"
                       }
                     `}
                   >
                     {selectedCategory === category && (
                       <motion.div
-                        className="absolute inset-0 bg-gradient-to-r from-blue-600 via-purple-600 to-blue-600"
+                        className="absolute inset-0 bg-gradient-to-r from-indigo-600 via-blue-600 to-purple-600"
                         layoutId="activeCategory"
                         transition={{
                           type: "spring",
@@ -482,7 +526,7 @@ export function Projects() {
           {filteredProjects.length > 0 ? (
             <motion.div
               key={`${selectedCategory}-${searchQuery}`}
-              className="max-w-7xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
+              className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8"
               initial="hidden"
               animate="visible"
               exit="hidden"

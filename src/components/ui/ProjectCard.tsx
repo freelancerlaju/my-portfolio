@@ -46,11 +46,9 @@ export const ProjectCard = memo(function ProjectCard({
 }: ProjectCardProps) {
   return (
     <motion.div
-      whileHover={{ y: -8 }}
-      transition={{ duration: 0.3, ease: "easeOut" }}
       className="h-full"
     >
-      <Card className="group relative overflow-hidden transition-all duration-500 focus-visible:outline-none focus-visible:ring-0 bg-white/90 dark:bg-gray-800/90 backdrop-blur-xl border border-gray-200/60 dark:border-gray-700/60 rounded-2xl h-full flex flex-col">
+      <Card className="group relative overflow-hidden transition-all duration-300 focus-visible:outline-none focus-visible:ring-0 bg-white/90 dark:bg-gray-800/90 backdrop-blur-xl border border-gray-200/60 dark:border-gray-700/60 rounded-2xl h-full flex flex-col hover:shadow-lg dark:hover:shadow-xl hover:shadow-gray-300/50 dark:hover:shadow-gray-900/50">
         {/* Image Container */}
         <div className="relative overflow-hidden p-5 pb-0 rounded-t-2xl">
           <div className="relative aspect-video rounded-xl overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-700 dark:to-gray-800">
@@ -61,7 +59,7 @@ export const ProjectCard = memo(function ProjectCard({
               decoding="async"
               width="400"
               height="300"
-              className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 ease-out"
+              className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-300 ease-out"
             />
 
             {/* Category Badge - Top Right */}
@@ -76,12 +74,12 @@ export const ProjectCard = memo(function ProjectCard({
         </div>
 
         {/* Content */}
-        <CardHeader className="pb-3 flex-1 flex flex-col">
-          <div className="flex items-start justify-between gap-3 mb-2">
+        <CardHeader className="pb-2 flex-1 flex flex-col">
+          <div className="flex items-center justify-between gap-3 mb-1">
             <CardTitle className="text-xl font-bold text-gray-900 dark:text-gray-100 leading-tight group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">
               {title}
             </CardTitle>
-            <div className="flex gap-1 flex-shrink-0 pt-1">
+            <div className="flex gap-1 flex-shrink-0">
               {github && github !== "#" && (
                 <TooltipProvider>
                   <Tooltip>
@@ -138,7 +136,7 @@ export const ProjectCard = memo(function ProjectCard({
           </div>
         </CardHeader>
 
-        <CardContent className="pb-4 flex-1">
+        <CardContent className="pb-3 pt-0 flex-1">
           <CardDescription className="text-sm text-gray-600 dark:text-gray-400 line-clamp-3 leading-relaxed">
             {description}
           </CardDescription>
